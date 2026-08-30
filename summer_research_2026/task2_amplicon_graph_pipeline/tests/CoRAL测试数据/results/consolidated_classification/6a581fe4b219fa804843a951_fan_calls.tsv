@@ -1,0 +1,113 @@
+sample_name	amplicon_number	fan_call	fan_probability	amplified_span_mb	sv_qualifying_inter_or_large	chrom_dominant_frac	sv_crossing_frac	amplified_cn40_span_mb
+BT474	amplicon10	None detected	0.0000	1.4685	0	1.0	0.0	0.0
+BT474	amplicon11	None detected	0.0000	1.16	0	1.0	0.0	0.0
+BT474	amplicon1	None detected	0.0000	96.0953	1	1.0	0.0	0.0
+BT474	amplicon2	None detected	0.0112	82.2605	6	0.7538	0.5	0.0
+BT474	amplicon3	None detected	0.0000	0.905	0	1.0	0.0	0.0
+BT474	amplicon4	Positive	0.9886	73.0207	54	0.4648	0.7463	6.9625
+BT474	amplicon5	None detected	0.0000	1.1899	0	1.0	0.0	0.0
+BT474	amplicon6	None detected	0.0000	0.4934	0	1.0	0.0	0.0
+BT474	amplicon7	None detected	0.0000	11.9577	1	1.0	0.5	0.0
+BT474	amplicon8	None detected	0.0000	0.335	0	1.0	0.0	0.0
+BT474	amplicon9	None detected	0.0001	27.5374	2	1.0	0.6667	0.0
+CHP212	amplicon1	None detected	0.0000	4.5205	3	1.0	0.8182	4.5205
+COLO320DM	amplicon1	None detected	0.0000	0.3683	1	0.6721	0.0	0.0
+COLO320DM	amplicon2	None detected	0.0000	1.7441	1	0.8916	0.4	0.0
+COLO320DM	amplicon3	Positive	0.6100	4.6973	25	0.4286	0.5111	3.4375
+COLO320DM	amplicon4	None detected	0.0000	2.06	0	1.0	0.0	0.0
+COLO320DM	amplicon5	None detected	0.0000	0.2695	0	1.0	0.0	0.0
+COLO320DM	amplicon6	None detected	0.0000	0.4595	0	1.0	0.0	0.0
+COLO320DM	amplicon7	None detected	0.0000	1.274	0	1.0	0.0	0.0
+COLO320DM_Hung2021	amplicon1	None detected	0.0000	0.545	0	1.0	0.0	0.0
+COLO320DM_Hung2021	amplicon2	None detected	0.0000	0.375	0	1.0	0.0	0.0
+COLO320DM_Hung2021	amplicon3	None detected	0.2357	4.7434	16	0.4526	0.6129	3.2815
+COLO320DM_Hung2021	amplicon4	None detected	0.0000	0.46	0	1.0	0.0	0.0
+COLO320DM_mono	amplicon1	None detected	0.0000	0.325	0	1.0	0.0	0.0
+COLO320DM_mono	amplicon2	None detected	0.0000	0.58	0	1.0	0.0	0.0
+COLO320DM_mono	amplicon3	None detected	0.0000	0.8741	1	0.7959	0.5	0.0
+COLO320DM_mono	amplicon4	Positive	0.8664	77.7572	26	0.3667	0.4889	3.4346
+COLO320DM_mono	amplicon5	None detected	0.0000	2.38	0	1.0	0.0	0.0
+COLO320DM_mono	amplicon6	None detected	0.0000	1.27	0	1.0	0.0	0.0
+COLO320HSR	amplicon1	None detected	0.0001	0.616	2	0.5025	0.0	0.0
+COLO320HSR	amplicon2	None detected	0.0000	0.33	0	1.0	0.0	0.0
+COLO320HSR	amplicon3	None detected	0.0000	1.7591	1	0.8928	0.3333	0.0
+COLO320HSR	amplicon4	Positive	0.8740	4.6973	41	0.4284	0.4	4.3321
+GBM39EC	amplicon1	None detected	0.0000	1.49	1	1.0	0.0	1.2861
+GBM39EC_mono	amplicon1	None detected	0.0004	97.604	3	1.0	1.0	1.2861
+GBM39HSR	amplicon1	None detected	0.0795	78.748	10	0.7327	0.8	1.2861
+GBM39HSR	amplicon2	None detected	0.0000	0.31	0	1.0	0.0	0.0
+GBM39HSR	amplicon3	None detected	0.0000	0.0	0	1.0	0.0	0.0
+GBM39HSR	amplicon4	None detected	0.0000	0.79	0	1.0	0.0	0.0
+GBM39HSR	amplicon5	None detected	0.0000	1.76	0	1.0	0.0	0.0
+GBM39HSR	amplicon6	None detected	0.0000	1.995	1	0.9089	0.0	0.0
+GBM39HSR	amplicon7	None detected	0.0017	16.0698	4	1.0	1.0	0.0
+GBM39HSR	amplicon8	None detected	0.0000	0.465	0	1.0	0.0	0.0
+GBM39HSR	amplicon9	None detected	0.0000	0.0	0	1.0	0.0	0.0
+H1437	amplicon1	None detected	0.0000	1.025	0	1.0	0.0	0.0
+H1437	amplicon2	None detected	0.0000	1.946	2	1.0	0.6667	0.0
+H1437_ul	amplicon1	None detected	0.0000	0.34	0	1.0	0.0	0.0
+H1437_ul	amplicon2	None detected	0.0000	0.82	0	1.0	0.0	0.0
+H1437_ul	amplicon3	None detected	0.0000	0.315	0	1.0	0.0	0.0
+H1437_ul	amplicon4	None detected	0.0000	1.9632	2	1.0	0.6	0.0
+H1437_ul	amplicon5	None detected	0.0000	0.705	0	1.0	0.0	0.0
+H1437_ul	amplicon6	None detected	0.0000	0.0	0	1.0	0.0	0.0
+H1437_ul	amplicon7	None detected	0.0000	0.3453	0	1.0	0.0	0.0
+H2009	amplicon1	None detected	0.0000	0.0	0	1.0	0.0	0.0
+H2009	amplicon2	None detected	0.0000	0.34	0	1.0	0.0	0.0
+H2170	amplicon1	None detected	0.0000	0.7257	0	1.0	0.0	0.1854
+H2170	amplicon2	None detected	0.0034	28.421	13	0.5661	0.3333	28.4193
+H2170	amplicon3	None detected	0.0001	5.2997	2	1.0	0.75	0.0
+HCC1395	amplicon1	None detected	0.0000	0.577	0	1.0	0.0	0.0
+HCC1937	amplicon1	None detected	0.0000	0.61	0	1.0	0.0	0.0
+HCC1937_ul	amplicon1	None detected	0.0000	0.605	0	1.0	0.0	0.0
+HCC1937_ul	amplicon2	None detected	0.0000	0.3453	0	1.0	0.0	0.0
+HCC1954	amplicon10	None detected	0.0000	0.5288	0	1.0	0.0	0.0
+HCC1954	amplicon11	None detected	0.0000	0.498	0	1.0	0.0	0.4921
+HCC1954	amplicon1	Positive	0.9999	250.7065	117	0.6149	0.4694	0.2033
+HCC1954	amplicon2	None detected	0.0000	0.685	0	1.0	0.0	0.0
+HCC1954	amplicon3	None detected	0.0000	0.575	0	1.0	0.0	0.0
+HCC1954	amplicon4	None detected	0.0000	4.2802	0	1.0	0.0	0.0
+HCC1954	amplicon5	None detected	0.0000	1.6751	0	1.0	0.0	0.0
+HCC1954	amplicon6	None detected	0.0000	0.695	0	1.0	0.0	0.0
+HCC1954	amplicon7	None detected	0.0003	6.3958	3	0.5464	0.0	0.0
+HCC1954	amplicon8	None detected	0.0000	0.52	0	1.0	0.0	0.0
+HCC1954	amplicon9	None detected	0.0000	1.6243	2	0.6321	0.0	0.0
+HCC827	amplicon1	Positive	0.9740	81.7703	44	0.8034	0.5686	0.0
+HCC827	amplicon2	Positive	0.7530	17.2887	18	0.4271	0.4231	0.0414
+HCC827	amplicon3	None detected	0.0000	4.7322	0	1.0	0.1	1.8035
+HCC827	amplicon4	None detected	0.0000	0.4455	0	1.0	0.0	0.0
+HCC827	amplicon5	None detected	0.0000	10.6425	2	0.7288	0.0	0.0
+HCC827	amplicon6	None detected	0.0000	0.585	1	0.6581	0.0	0.0
+IMR-5_75	amplicon1	None detected	0.0226	57.5604	18	0.6392	0.8077	54.5755
+PC3DM_mono	amplicon10	None detected	0.0000	0.32	0	1.0	0.0	0.0
+PC3DM_mono	amplicon11	None detected	0.0000	1.0598	0	1.0	0.0	0.0
+PC3DM_mono	amplicon12	None detected	0.0000	0.5092	0	1.0	0.0	0.0
+PC3DM_mono	amplicon13	None detected	0.0000	0.0	0	1.0	0.0	0.0
+PC3DM_mono	amplicon14	None detected	0.0000	0.3148	0	1.0	0.0	0.0
+PC3DM_mono	amplicon1	None detected	0.0001	4.81	2	0.9566	0.6667	0.0
+PC3DM_mono	amplicon2	None detected	0.0000	2.695	1	0.7273	0.0	0.0
+PC3DM_mono	amplicon3	None detected	0.0000	0.555	1	0.8412	0.0	0.0
+PC3DM_mono	amplicon4	None detected	0.4628	29.9432	52	1.0	0.9483	22.6856
+PC3DM_mono	amplicon5	None detected	0.0000	4.8326	1	1.0	0.0	0.0
+PC3DM_mono	amplicon6	None detected	0.0000	0.4	0	1.0	0.0	0.0
+PC3DM_mono	amplicon7	None detected	0.0000	0.445	0	1.0	0.0	0.0
+PC3DM_mono	amplicon8	None detected	0.0000	0.39	0	1.0	0.0	0.0
+PC3DM_mono	amplicon9	None detected	0.0000	0.495	0	1.0	0.0	0.0
+PC3HSR_mono	amplicon10	None detected	0.0000	0.3649	0	1.0	0.0	0.0
+PC3HSR_mono	amplicon1	None detected	0.0090	43.0748	6	0.8684	0.7143	0.0
+PC3HSR_mono	amplicon2	None detected	0.0000	29.0202	1	1.0	0.0	0.0
+PC3HSR_mono	amplicon3	None detected	0.0000	0.965	1	0.8122	0.0	0.0
+PC3HSR_mono	amplicon4	None detected	0.4282	33.0398	49	1.0	0.9643	22.1983
+PC3HSR_mono	amplicon5	None detected	0.0000	1.475	0	1.0	0.0	0.0
+PC3HSR_mono	amplicon6	None detected	0.0000	1.1465	0	1.0	0.0	0.0
+PC3HSR_mono	amplicon7	None detected	0.0001	10.6882	3	1.0	0.4286	0.0
+PC3HSR_mono	amplicon8	None detected	0.0000	0.345	0	1.0	0.0	0.0
+PC3HSR_mono	amplicon9	None detected	0.0000	0.6444	0	1.0	0.0	0.0
+SKBR3	amplicon1	None detected	0.0001	114.0151	2	0.8703	0.5	0.0
+SKBR3	amplicon2	Positive	0.9930	94.9184	59	0.8716	0.7	0.0001
+SKBR3	amplicon3	None detected	0.0000	1.8119	0	1.0	0.0	0.0
+SNU16	amplicon1	Positive	0.7210	13.8051	45	0.616	0.5147	9.8028
+TR14	amplicon1	None detected	0.0000	1.0953	2	0.8032	0.0	0.0
+TR14	amplicon2	None detected	0.0004	66.6582	11	0.7802	0.5652	66.6582
+TR14	amplicon3	None detected	0.0000	0.6868	3	0.7032	0.0	0.6868
+TR14	amplicon4	None detected	0.0000	1.0102	1	1.0	1.0	1.0102

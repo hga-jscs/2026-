@@ -1,0 +1,15 @@
+Interval	1	chr10	33019920	33499918
+Interval	2	chr10	37849667	37949907
+List of cycle segments
+Segment	1	chr10	33019920	33117035
+Segment	2	chr10	33117036	33122580
+Segment	3	chr10	33122581	33300194
+Segment	4	chr10	33300195	33499918
+Segment	5	chr10	37849667	37949667
+Segment	6	chr10	37949668	37949907
+List of longest subpath constraints
+Path constraint 1	e3-:2,d1-:1,e2+:1,c2-:1,e3+:2	Support=14	Satisfied
+Path constraint 2	e1+:1,c1-:1,e2+:1,c2-:1,e3+:1	Support=10	Satisfied
+List of extracted cycles/paths
+Path=1;Copy_count=3.407139500057065;Segments=0+,1+,2+,3+,5-,0-;Path_constraints_satisfied=2
+Path=2;Copy_count=3.0895717842469113;Segments=0+,4-,3-,2-,3+,4+,0-;Path_constraints_satisfied=1

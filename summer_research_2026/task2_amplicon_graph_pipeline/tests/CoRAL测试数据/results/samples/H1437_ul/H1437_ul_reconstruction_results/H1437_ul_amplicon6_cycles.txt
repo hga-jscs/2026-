@@ -1,0 +1,5 @@
+Interval	1	chr14	105763694	106218699
+List of cycle segments
+Segment	1	chr14	105763694	106218699
+List of extracted cycles/paths
+Path=1;Copy_count=3.6250801237588948;Segments=0+,1+,0-

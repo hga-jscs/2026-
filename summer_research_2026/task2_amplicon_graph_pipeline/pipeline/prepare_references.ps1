@@ -5,7 +5,8 @@ mappability、gene、centromere 文件；任何缺项或 tar 错误都会立即�
 
 param(
     [Parameter(Mandatory = $true)]
-    [string]$DataRoot
+    [string]$DataRoot,
+    [string]$DatasetManifest = ""
 )
 
 $ErrorActionPreference = "Stop"
@@ -14,7 +15,7 @@ $archiveRoot = Join-Path $DataRoot "reference_archives"
 New-Item -ItemType Directory -Path $referenceRoot -Force | Out-Null
 New-Item -ItemType Directory -Path $archiveRoot -Force | Out-Null
 
-$references = @("GRCh37", "hg19", "GRCh38_viral", "mm10")
+$references = @("GRCh37", "hg19", "GRCh38", "GRCh38_viral", "mm10")
 foreach ($reference in $references) {
     $readyFile = Join-Path $referenceRoot "$reference\file_list.txt"
     if (Test-Path -LiteralPath $readyFile -PathType Leaf) {
@@ -70,4 +71,28 @@ foreach ($reference in $references) {
     Write-Host "REFERENCE_READY ref=$reference archive_bytes=$bytes"
 }
 
-Write-Host "REFERENCES_COMPLETE count=$($references.Count + 1)"
+if (-not $DatasetManifest) {
+    $DatasetManifest = Join-Path (Split-Path -Parent $PSScriptRoot) "结果\数据集清单.json"
+}
+if (-not (Test-Path -LiteralPath $DatasetManifest -PathType Leaf)) {
+    throw "Dataset manifest does not exist: $DatasetManifest"
+}
+$requiredReferences = Get-Content -LiteralPath $DatasetManifest -Raw -Encoding UTF8 |
+    ConvertFrom-Json |
+    Where-Object { $_.status -eq "READY" } |
+    ForEach-Object {
+        if ($_.reference_genome -eq "hg38") { "GRCh38" }
+        elseif ($_.reference_genome -eq "GRCm38") { "mm10" }
+        else { [string]$_.reference_genome }
+    } |
+    Sort-Object -Unique
+$missingReferences = @(
+    $requiredReferences | Where-Object {
+        -not (Test-Path -LiteralPath (Join-Path $referenceRoot "$_\file_list.txt") -PathType Leaf)
+    }
+)
+if ($missingReferences.Count -gt 0) {
+    throw "Reference set is incomplete for the manifest: $($missingReferences -join ', ')"
+}
+
+Write-Host "REFERENCES_COMPLETE count=$($references.Count) manifest_required=$($requiredReferences.Count)"

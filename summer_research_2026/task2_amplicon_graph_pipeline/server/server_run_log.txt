@@ -1,0 +1,8 @@
+SERVER_AC_COMPLETE rows=112 exit_code=0
+LP_PROJECTS count=1
+LP_PROJECT 1/1 id=6a581fe4b219fa804843a951 expected=112
+LP_DONE id=6a581fe4b219fa804843a951 rows=112 errors=0 seconds=0.122
+LP_COMPLETE projects=1 rows=112 errors=0
+TASK2 SERVER AUTOMATED CONSISTENCY CHECK PASSED
+AC=112; LP=112; CSV=112
+max_balance_residual=1.13687e-13; max_lower_bound_violation=0; max_upper_bound_violation=5.68434e-14

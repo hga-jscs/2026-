@@ -3,9 +3,10 @@ set -Eeuo pipefail
 
 # 只在 task2 私有目录中建目录和符号链接；不使用 sudo，也不修改共享环境。
 DEPLOY_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BASE_ROOT="/home/hgajscs/task1_coral_20260825"
+EXPECTED_ROOT="${TASK2_ROOT:-$HOME/task2_ac_lwcn_20260830}"
+BASE_ROOT="${TASK1_ROOT:-$HOME/task1_coral_20260825}"
 
-test "$DEPLOY_ROOT" = "/home/hgajscs/task2_ac_lwcn_20260830"
+test "$DEPLOY_ROOT" = "$EXPECTED_ROOT"
 test -x "$BASE_ROOT/venv/bin/python"
 test -d "$BASE_ROOT/data_root/extracted/6a581fe4b219fa804843a951/results"
 test -d "$BASE_ROOT/reference_data/GRCh38"

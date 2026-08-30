@@ -1,0 +1,9 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.venv/
+data/
+reference/
+archives/
+ac_runs/
+lp_runs/

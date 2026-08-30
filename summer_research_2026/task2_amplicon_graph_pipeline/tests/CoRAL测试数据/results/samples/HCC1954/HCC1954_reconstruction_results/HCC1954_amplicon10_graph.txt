@@ -1,0 +1,11 @@
+SequenceEdge: StartPosition, EndPosition, PredictedCN, AverageCoverage, Size, NumberOfLongReads
+sequence	chr15:26906763-	chr15:27434569+	6.409319402695826	237.62128012701612	527807	6515
+sequence	chr15:27434570-	chr15:27435605+	4.070370108047499	141.6023166023166	1036	155
+sequence	chr15:27435606-	chr15:27536749+	1.7314208133991718	64.20726884441984	101144	389
+BreakpointEdge: StartPosition->EndPosition, PredictedCN, NumberOfLongReads
+concordant	chr15:27434569+->chr15:27434570-	4.070370108047499	65
+concordant	chr15:27435605+->chr15:27435606-	1.7314208133991718	63
+discordant	chr15:27435605+->chr15:27434569+	2.338949294648327	78
+PathConstraint: Path, Support
+path_constraint	e1+:2,d1+:1,e2-:1,c1+:1,e1-:2	67
+path_constraint	e1+:1,c1-:1,e2+:1,c2-:1,e3+:1	54

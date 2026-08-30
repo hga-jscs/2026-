@@ -1,0 +1,4 @@
+SequenceEdge: StartPosition, EndPosition, PredictedCN, AverageCoverage, Size, NumberOfLongReads
+sequence	chr10:36579911-	chr10:36979909+	6.131680112622488	50.01135002837507	399999	2586
+BreakpointEdge: StartPosition->EndPosition, PredictedCN, NumberOfLongReads
+PathConstraint: Path, Support

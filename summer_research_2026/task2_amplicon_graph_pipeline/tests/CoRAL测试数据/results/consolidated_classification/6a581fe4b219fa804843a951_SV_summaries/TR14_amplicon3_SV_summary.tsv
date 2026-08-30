@@ -1,0 +1,4 @@
+chrom1	pos1	chrom2	pos2	sv_type	read_support	features	orientation	pos1_flanking_coordinate	pos2_flanking_coordinate	homology_length	homology_sequence
+chr12	56957867	chr2	10160182	interchromosomal	192	ecDNA	--	56957868	10160183	None	None
+chr12	57075852	chr2	10728728	interchromosomal	8	ecDNA	++	57075851	10728727	None	None
+chr12	57076158	chr2	10728728	interchromosomal	157	ecDNA	++	57076157	10728727	None	None

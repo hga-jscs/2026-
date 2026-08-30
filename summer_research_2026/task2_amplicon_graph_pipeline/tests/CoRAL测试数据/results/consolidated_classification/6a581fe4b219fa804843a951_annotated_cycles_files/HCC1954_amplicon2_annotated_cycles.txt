@@ -1,0 +1,2 @@
+List of cycle segments
+Segment	1	chr5	114519046	115204040

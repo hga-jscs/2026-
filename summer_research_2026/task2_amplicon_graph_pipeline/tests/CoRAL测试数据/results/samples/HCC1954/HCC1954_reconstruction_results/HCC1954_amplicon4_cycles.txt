@@ -1,0 +1,8 @@
+Interval	1	chr9	2460127	6740331
+List of cycle segments
+Segment	1	chr9	2460127	6729119
+Segment	2	chr9	6729120	6730105
+Segment	3	chr9	6730106	6740331
+List of longest subpath constraints
+Path constraint 1	e1+:1,c1-:1,e2+:1,c2-:1,e3+:1	Support=19	Unsatisfied
+List of extracted cycles/paths

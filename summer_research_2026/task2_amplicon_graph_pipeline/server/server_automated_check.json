@@ -1,0 +1,22 @@
+{
+  "check_type": "automated_consistency_check",
+  "status": "PASSED",
+  "verified_at_utc": "2026-08-30T10:53:44+00:00",
+  "project_id": "6a581fe4b219fa804843a951",
+  "hostname": "compgen",
+  "ac_started_at_utc": "2026-08-30T10:53:36+00:00",
+  "ac_finished_at_utc": "2026-08-30T10:53:43+00:00",
+  "ac_run_fingerprint": "61ae47ab30008fb78b4e68be21162d808002d630b277f3f825fcd51b1066b0c9",
+  "lp_run_fingerprint": "cce3995a3502aafa4321118e1f387ab36ee93e68acbf0615e0935eb25e22e96c",
+  "ac_rows": 112,
+  "lp_rows": 112,
+  "final_rows": 112,
+  "tolerance": 1e-07,
+  "max_balance_residual": 1.1368683772161603e-13,
+  "max_lower_bound_violation": 0.0,
+  "max_upper_bound_violation": 5.684341886080802e-14,
+  "ac_source_sha256": "8ea6aa8f0233723b303f274f165a254657b32d7bef3a86881547c5cdfe6f87bd",
+  "lp_source_sha256": "a316ff8bf9b1787ae66a734903138332e812481f296dc0ad850cad647c5c51c5",
+  "final_csv_sha256": "e16bb87fd2aeeec4561f9239eea3c8d79b57b69e9e9e10fb973347eb91e2152d",
+  "errors": []
+}

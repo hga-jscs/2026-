@@ -1,0 +1,3 @@
+chrom1	pos1	chrom2	pos2	sv_type	read_support	features	orientation	pos1_flanking_coordinate	pos2_flanking_coordinate	homology_length	homology_sequence
+chr2	16941258	chr1	891163	interchromosomal	44	ecDNA	--	16941259	891164	None	None
+chr2	17944681	chr1	983014	interchromosomal	59	ecDNA	++	17944680	983013	None	None

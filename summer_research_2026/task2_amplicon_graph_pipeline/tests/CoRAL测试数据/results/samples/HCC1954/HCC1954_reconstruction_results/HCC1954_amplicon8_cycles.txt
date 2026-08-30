@@ -1,0 +1,4 @@
+Interval	1	chr12	42600255	43120254
+List of cycle segments
+Segment	1	chr12	42600255	43120254
+List of extracted cycles/paths

@@ -1,0 +1,21 @@
+CoRAL v2.2.0
+1/1 amplicons solved.
+Runtime Limit: 86400 s
+Profiling Enabled: False
+-----------------------------------------------
+AmpliconID = 1
+#Intervals = 2
+Amplicon Intervals:
+	Amplicon 1 > chr2:11,450,087-12,860,095
+	Amplicon 1 > chr2:14,821,054-16,175,121
+Total Amplicon Size: 2,764,077
+# Chromosomes: 1
+# Sequence Edges: 23
+# Concordant Edges: 21
+# Discordant Edges: 11
+# Non-Source Edges: 55
+# Source Edges: 8
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=5, alpha=0.01, total_weights=233565150.59641838, resolution=0.1, num_path_constraints=14
+	Heaviest graph walk solved was a cycle.
+	Cycle=1;Copy_count=115.67870650867603;Segments=2+,3+,14+,18-,20+,21+,22+,11+,12+,5+,6+,7+,8+,9+

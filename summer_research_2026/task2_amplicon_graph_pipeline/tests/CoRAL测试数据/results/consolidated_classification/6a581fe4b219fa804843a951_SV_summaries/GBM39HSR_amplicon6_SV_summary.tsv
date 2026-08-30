@@ -1,0 +1,4 @@
+chrom1	pos1	chrom2	pos2	sv_type	read_support	features	orientation	pos1_flanking_coordinate	pos2_flanking_coordinate	homology_length	homology_sequence
+chr7	74135428	chr7	74136636	deletion-like	5	Linear	+-	74135427	74136637	None	None
+chr7	74414113	chr7	74416931	deletion-like	8	Linear	+-	74414112	74416932	None	None
+chr22	36872437	chr7	73967758	interchromosomal	3	None	--	36872438	73967759	None	None

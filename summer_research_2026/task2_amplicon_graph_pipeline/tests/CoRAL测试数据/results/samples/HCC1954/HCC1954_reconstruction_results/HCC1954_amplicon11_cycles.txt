@@ -1,0 +1,24 @@
+Interval	1	chr17	39381337	40081350
+List of cycle segments
+Segment	1	chr17	39381337	39483529
+Segment	2	chr17	39483530	39484621
+Segment	3	chr17	39484622	39489391
+Segment	4	chr17	39489392	39493958
+Segment	5	chr17	39493959	39659222
+Segment	6	chr17	39659223	39659816
+Segment	7	chr17	39659817	39759847
+Segment	8	chr17	39759848	39761618
+Segment	9	chr17	39761619	39980057
+Segment	10	chr17	39980058	39981519
+Segment	11	chr17	39981520	40081350
+List of longest subpath constraints
+Path constraint 1	e5-:2,c4+:2,e4-:2,c3+:2,e3-:2,d1-:1,e2+:1,c2-:1,e3+:2,c3-:2,e4+:2,c4-:2,e5+:2	Support=257	Unsatisfied
+Path constraint 2	e5-:2,d2-:1,e4+:1,c4-:1,e5+:2	Support=183	Unsatisfied
+Path constraint 3	e7-:2,d3-:1,e6+:1,c6-:1,e7+:2	Support=83	Unsatisfied
+Path constraint 4	e9-:2,d4-:1,e8+:1,c8-:1,e9+:2	Support=167	Unsatisfied
+Path constraint 5	e9+:2,d5+:1,e10-:1,c9+:1,e9-:2	Support=2252	Unsatisfied
+Path constraint 6	e1+:1,c1-:1,e2+:1,c2-:1,e3+:1,c3-:1,e4+:1,c4-:1,e5+:1	Support=82	Unsatisfied
+Path constraint 7	e5+:1,c5-:1,e6+:1,c6-:1,e7+:1	Support=3983	Unsatisfied
+Path constraint 8	e7+:1,c7-:1,e8+:1,c8-:1,e9+:1	Support=4043	Unsatisfied
+Path constraint 9	e9+:1,c9-:1,e10+:1,c10-:1,e11+:1	Support=98	Unsatisfied
+List of extracted cycles/paths

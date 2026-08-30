@@ -1,14 +1,24 @@
-"""原图 LP 的合成算例与 112 张真实图回归测试。"""
+"""原图 LP 的合成算例与可选 112 张真实图回归测试。"""
 
 import os
+import sys
 from pathlib import Path
 
 import pytest
+
+CODE_ROOT = Path(__file__).resolve().parents[1]
+ALGORITHM_SOURCE = CODE_ROOT / "source"
+PIPELINE_ROOT = CODE_ROOT / "pipeline"
+if str(PIPELINE_ROOT) not in sys.path:
+    sys.path.insert(0, str(PIPELINE_ROOT))
+if str(ALGORITHM_SOURCE) not in sys.path:
+    sys.path.insert(0, str(ALGORITHM_SOURCE))
 
 from cyclic_lwcn.analysis import discover_official_pairs
 from cyclic_lwcn.parser import parse_graph_file
 from cyclic_lwcn.state_lp import solve_cyclic_lwcn_upper_bound
 from original_graph_lwcn import solve_original_graph_linear_program
+from run_lwcn_and_merge import parse_graph_file_compatible
 
 
 def _write_graph(
@@ -84,11 +94,22 @@ def test_foldback_self_loops_have_incidence_two(tmp_path: Path) -> None:
     assert result.maximum_cyclic_ratio == pytest.approx(1.0)
 
 
+def test_comma_prefixed_aa_header_is_recognized(tmp_path: Path) -> None:
+    path = _write_graph(tmp_path, [(1, 100, 1)], [])
+    content = path.read_text(encoding="utf-8")
+    path.write_text("," + content, encoding="utf-8")
+    graph = parse_graph_file_compatible(path)
+    assert graph.sequence_edges
+    assert graph.warnings == [
+        "INFO|AA_COMMA_PREFIXED_HEADERS|count=1; recognized comma-prefixed AA headers"
+    ]
+
+
 def test_all_112_official_graphs_match_the_state_graph_lp() -> None:
-    configured_root = os.environ.get("CORAL_DATA_ROOT")
-    if not configured_root:
-        pytest.skip("set CORAL_DATA_ROOT to run the 112-pair CoRAL integration test")
-    data_root = Path(configured_root).expanduser().resolve()
+    configured = os.environ.get("CORAL_TEST_DATA")
+    data_root = Path(configured) if configured else Path(__file__).resolve().parent / "CoRAL测试数据"
+    if not data_root.is_dir():
+        pytest.skip("CoRAL regression data are unavailable")
     pairs = discover_official_pairs(data_root)
     assert len(pairs) == 112
     maximum_ratio_difference = 0.0

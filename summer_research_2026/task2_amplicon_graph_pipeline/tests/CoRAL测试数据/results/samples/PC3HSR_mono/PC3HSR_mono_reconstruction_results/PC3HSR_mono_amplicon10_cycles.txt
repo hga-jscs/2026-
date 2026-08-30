@@ -1,0 +1,10 @@
+Interval	1	chr15	21918399	22283308
+List of cycle segments
+Segment	1	chr15	21918399	22085127
+Segment	2	chr15	22085128	22095700
+Segment	3	chr15	22095701	22283308
+List of longest subpath constraints
+Path constraint 1	e1+:1,c1-:1,e2+:1,c2-:1,e3+:1	Support=6	Satisfied
+List of extracted cycles/paths
+Path=1;Copy_count=2.442027233492491;Segments=0+,1+,3+,0-;Path_constraints_satisfied=
+Path=2;Copy_count=2.0648285097247427;Segments=0+,1+,2+,3+,0-;Path_constraints_satisfied=1

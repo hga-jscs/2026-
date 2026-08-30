@@ -1,0 +1,4 @@
+List of cycle segments
+Segment	1	chr9	2460127	6729119
+Segment	2	chr9	6729120	6730105
+Segment	3	chr9	6730106	6740331

@@ -1,0 +1,3 @@
+List of cycle segments
+Segment	1	chr1	242327044	242637033
+Cycle=1;Copy_count=4.19908202715744;Length=309990;IsCyclicPath=False;CycleClass=Invalid;Segments=0+,1+,0+

@@ -1,0 +1,24 @@
+List of cycle segments
+Segment	1	chr7	48919797	49019796
+Segment	2	chr7	49019797	49119797
+Segment	3	chr7	54659673	54763281
+Segment	4	chr7	54763282	55127266
+Segment	5	chr7	55127267	55155020
+Segment	6	chr7	55155021	55219050
+Segment	7	chr7	55219051	55221367
+Segment	8	chr7	55221368	55609190
+Segment	9	chr7	55609191	55610094
+Segment	10	chr7	55610095	55763049
+Segment	11	chr7	55763050	56049369
+Segment	12	chr7	56049370	56093173
+Segment	13	chr7	56093174	56150047
+Segment	14	chr7	56150048	56152554
+Segment	15	chr7	56152555	56193173
+Segment	16	chr7	152267260	152367260
+Segment	17	chr7	152367261	152395539
+Segment	18	chr7	152395540	152401116
+Segment	19	chr7	152401117	152467260
+Cycle=1;Copy_count=113.30303195293386;Length=1257430;IsCyclicPath=True;CycleClass=ecDNA-like;Segments=4+,6+,7+,8+,10+,11+
+Cycle=2;Copy_count=5.369468765403894;Length=1255113;IsCyclicPath=True;CycleClass=Rearranged;Segments=4+,6+,8+,10+,11+
+Cycle=3;Copy_count=3.5625393845515987;Length=1528677;IsCyclicPath=True;CycleClass=ecDNA-like;Segments=3+,4+,5+,6+,8+,9+,10+,11+,12+,13+,15+
+Cycle=4;Copy_count=3.4492885022469437;Length=200001;IsCyclicPath=False;CycleClass=Linear;Segments=0+,1+,2+,0+

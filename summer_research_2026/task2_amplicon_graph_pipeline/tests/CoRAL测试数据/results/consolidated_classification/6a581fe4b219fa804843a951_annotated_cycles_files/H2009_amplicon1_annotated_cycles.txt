@@ -1,0 +1,3 @@
+List of cycle segments
+Segment	1	chr2	88765675	89085675
+Cycle=1;Copy_count=2.7810662604915755;Length=320001;IsCyclicPath=False;CycleClass=Invalid;Segments=0+,1+,0+

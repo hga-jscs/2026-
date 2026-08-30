@@ -1,0 +1,118 @@
+CoRAL v2.2.0
+7/7 amplicons solved.
+Runtime Limit: 86400 s
+Profiling Enabled: False
+-----------------------------------------------
+AmpliconID = 1
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 1 > chr1:144,139,578-144,479,576
+Total Amplicon Size: 339,999
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=1, alpha=0.01, total_weights=2126107.186872957, resolution=0.1, num_path_constraints=0
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=6.253274823964065;Segments=0+,1+,0-
+-----------------------------------------------
+AmpliconID = 2
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 2 > chr1:146,214,561-147,034,555
+Total Amplicon Size: 819,995
+# Chromosomes: 1
+# Sequence Edges: 5
+# Concordant Edges: 4
+# Discordant Edges: 2
+# Non-Source Edges: 11
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=3, alpha=0.01, total_weights=7354386.052306232, resolution=0.1, num_path_constraints=2
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=3.6228261673875046;Segments=0+,1+,2+,3+,5+,0-
+-----------------------------------------------
+AmpliconID = 3
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 3 > chr1:149,249,536-149,564,535
+Total Amplicon Size: 315,000
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=1, alpha=0.01, total_weights=2458198.8574942057, resolution=0.1, num_path_constraints=0
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=7.803805896807005;Segments=0+,1+,0-
+-----------------------------------------------
+AmpliconID = 4
+#Intervals = 3
+Amplicon Intervals:
+	Amplicon 4 > chr5:496,856-2,560,075
+	Amplicon 4 > chr5:5,369,295-5,570,737
+	Amplicon 4 > chr5:18,883,231-19,083,231
+Total Amplicon Size: 2,464,664
+# Chromosomes: 1
+# Sequence Edges: 21
+# Concordant Edges: 18
+# Discordant Edges: 9
+# Non-Source Edges: 48
+# Source Edges: 12
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=7, alpha=0.01, total_weights=17642634.437627096, resolution=0.1, num_path_constraints=8
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=3.714114447591152;Segments=0+,16-,14-,13-,11-,10-,9-,7-,6-,11+,13+,14+,16+,0-
+-----------------------------------------------
+AmpliconID = 5
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 5 > chr5:2,705,087-3,410,102
+Total Amplicon Size: 705,016
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=1, alpha=0.01, total_weights=4707834.8767776005, resolution=0.1, num_path_constraints=0
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=6.6776284180466865;Segments=0+,1+,0-
+-----------------------------------------------
+AmpliconID = 6
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 6 > chr14:105,763,694-106,218,699
+Total Amplicon Size: 455,006
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=1, alpha=0.01, total_weights=1649433.2067910389, resolution=0.1, num_path_constraints=0
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=3.6250801237588948;Segments=0+,1+,0-
+-----------------------------------------------
+AmpliconID = 7
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 7 > chr20:30,976,748-31,322,039
+Total Amplicon Size: 345,292
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=1, alpha=0.01, total_weights=5066567.863858515, resolution=0.1, num_path_constraints=0
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=14.673284825187139;Segments=0+,1+,0-

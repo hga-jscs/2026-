@@ -1,0 +1,4 @@
+TASK2 FULL AUTOMATED CONSISTENCY CHECK PASSED
+projects=32; project_scoped_records=28142; AC=28142; LP=28142; CSV=28142
+archive_hashes=32/32; source_file_hashes=56284/56284; parser_warning_rows=2
+max_balance_residual=9.59449e-08; max_lower_bound_violation=3.59712e-08; max_upper_bound_violation=9.97716e-08; max_certified_gap_ratio=5.09236e-16

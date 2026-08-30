@@ -1,0 +1,14 @@
+Interval	1	chr11	62188519	62388519
+Interval	2	chr11	71979778	72179778
+Interval	3	chr11	72875413	74146232
+List of cycle segments
+Segment	1	chr11	62188519	62288519
+Segment	2	chr11	62288520	62388519
+Segment	3	chr11	71979778	72079777
+Segment	4	chr11	72079778	72179778
+Segment	5	chr11	72875413	72978464
+Segment	6	chr11	72978465	74046232
+Segment	7	chr11	74046233	74146232
+List of extracted cycles/paths
+Path=1;Copy_count=4.364184560565315;Segments=0+,5+,6+,7+,0-
+Path=2;Copy_count=2.780616215913523;Segments=0+,1+,6-,4+,0-

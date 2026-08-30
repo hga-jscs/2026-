@@ -1,0 +1,87 @@
+{
+  "analysis_scope": "single graph-only feature: maximum cyclic length-weighted copy-number ratio",
+  "ac_run_condition": "AmpliconClassifier with --no_bfbarchitect",
+  "unit_definition": "project-scoped amplicon record; not necessarily an independent biological amplicon",
+  "record_count": 28142,
+  "project_count": 32,
+  "positive_tolerance": 1e-08,
+  "project_record_level": {
+    "record_count": 28142,
+    "ecdna_positive_count": 3613,
+    "ecdna_negative_count": 24529,
+    "screen_positive_count": 12315,
+    "confusion_matrix": {
+      "TP": 3583,
+      "FN": 30,
+      "FP": 8732,
+      "TN": 15797
+    },
+    "sensitivity": 0.991696650982563,
+    "specificity": 0.6440132088548249,
+    "precision": 0.2909460008120179,
+    "negative_predictive_value": 0.9981045049598787,
+    "accuracy": 0.688650415748703,
+    "roc_auc_ratio": 0.9144047900643532,
+    "average_precision_ratio": 0.5625350056639415,
+    "best_in_sample_accuracy": 0.8868594982588303,
+    "best_accuracy_threshold_ge": 0.679729984048,
+    "best_in_sample_f1": 0.573050492978787,
+    "best_f1_threshold_ge": 0.241876228721
+  },
+  "project_stratified": {
+    "project_count": 32,
+    "macro_mean": {
+      "sensitivity": 0.9982073846503796,
+      "specificity": 0.7297153676541308,
+      "precision": 0.5229456931895525,
+      "accuracy": 0.7948283430209143
+    },
+    "macro_median": {
+      "sensitivity": 1.0,
+      "specificity": 0.7894736842105263,
+      "precision": 0.4402689873417721,
+      "accuracy": 0.8339285714285715
+    },
+    "note": "各项目先单独计算，再对有定义的项目指标作等权汇总。"
+  },
+  "exact_source_pair_deduplicated": {
+    "deduplication_key": [
+      "graph_sha256",
+      "cycles_sha256"
+    ],
+    "removed_repeated_records": 3224,
+    "inconsistent_source_groups": 0,
+    "record_count": 24918,
+    "ecdna_positive_count": 3186,
+    "ecdna_negative_count": 21732,
+    "screen_positive_count": 10708,
+    "confusion_matrix": {
+      "TP": 3160,
+      "FN": 26,
+      "FP": 7548,
+      "TN": 14184
+    },
+    "sensitivity": 0.9918392969240427,
+    "specificity": 0.6526780784097184,
+    "precision": 0.29510646245797534,
+    "negative_predictive_value": 0.9981703026038001,
+    "accuracy": 0.6960430211092383,
+    "roc_auc_ratio": 0.9186630804357692,
+    "average_precision_ratio": 0.580332892499849,
+    "best_in_sample_accuracy": 0.8894373545228349,
+    "best_accuracy_threshold_ge": 0.679729984048,
+    "best_in_sample_f1": 0.5814404748316402,
+    "best_f1_threshold_ge": 0.241876228721
+  },
+  "parser_warning_audit": {
+    "all_record_warning_types": {
+      "NUMERICAL_NOISE_CLAMP": 1,
+      "UNMATCHED_BREAKPOINT_ENDPOINT": 1
+    },
+    "false_negative_warning_types": {},
+    "records_with_warning": 2,
+    "false_negatives_with_warning": 0,
+    "interpretation": "仅列分布，不把 warning 与假阴性解释为因果关系。"
+  },
+  "interpretation": "最大环状占比>0是高敏感但低精确率的筛查量；它不是完整的graph-only分类器，也不能替代cycles驱动的AC规则；所有指标都是相对于本次AC输出的一致性，不是生物学真值性能。"
+}

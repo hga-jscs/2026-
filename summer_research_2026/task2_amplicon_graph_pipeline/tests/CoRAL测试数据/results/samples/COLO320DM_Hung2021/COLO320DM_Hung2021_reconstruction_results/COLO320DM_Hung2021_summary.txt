@@ -1,0 +1,73 @@
+CoRAL v2.2.0
+4/4 amplicons solved.
+Runtime Limit: 86400 s
+Profiling Enabled: False
+-----------------------------------------------
+AmpliconID = 1
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 1 > chr1:150,354,528-150,899,524
+Total Amplicon Size: 544,997
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=1, alpha=0.01, total_weights=6804001.143041488, resolution=0.1, num_path_constraints=0
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=12.48447448892653;Segments=0+,1+,0-
+-----------------------------------------------
+AmpliconID = 2
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 2 > chr2:119,749,449-120,124,447
+Total Amplicon Size: 374,999
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=1, alpha=0.01, total_weights=1569927.0252817874, resolution=0.1, num_path_constraints=0
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=4.186483231373385;Segments=0+,1+,0-
+-----------------------------------------------
+AmpliconID = 3
+#Intervals = 6
+Amplicon Intervals:
+	Amplicon 3 > chr3:111,455,238-111,656,214
+	Amplicon 3 > chr6:154,996-484,992
+	Amplicon 3 > chr8:126,323,820-128,098,803
+	Amplicon 3 > chr8:129,165,937-129,374,475
+	Amplicon 3 > chr13:27,707,693-28,080,554
+	Amplicon 3 > chr16:32,237,917-33,732,841
+Total Amplicon Size: 4,382,284
+# Chromosomes: 5
+# Sequence Edges: 72
+# Concordant Edges: 66
+# Discordant Edges: 34
+# Non-Source Edges: 172
+# Source Edges: 24
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=9, alpha=0.01, total_weights=308425929.6477242, resolution=0.1, num_path_constraints=35
+	Heaviest graph walk solved was a cycle.
+	Cycle=1;Copy_count=35.97338126541449;Segments=2+,37-,36-,35-,34-,29+,30+,31+,32+,33+,34+,35+,36+,37+,38+,39+,27-,26-,25-,24-,23-,22-,21-,20-,19-,18-,17-,16-,15-,14-,59-,71-,70-,69-,68-,5+,6+,7+,44-,43-,42-,41-,45-,44-,52-,51-,50-,49-,48-,47-,46-,45-,44-,43-,20+,21+,22+,23+,24+,25+,26+,27+,28+,29+,30+,31+,32+,33+,34+,35+,36+,37+,38+,39+,40+,41+,18-,17-,16-,15-,14-,13-,12-,11-,56+,53-,52-,51-,50-,49-,48-,47-,46-,45-,44-,43-,20+,21+,22+,23+,24+,25+,26+,27+,39-,38-,37-,36-,35-,26-,25-,24-,23-,22-,21-,20-,19-,18-,17-,16-,15-,14-,13-,12-,11-,56+,53-,52-,51-,50-,49-,48-,47-,46-,45-,44-,43-,42-,41-,45-,44-,43-,42-,41-,40-,39-,38-,37-
+-----------------------------------------------
+AmpliconID = 4
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 4 > chr5:165,668,444-166,128,440
+Total Amplicon Size: 459,997
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=1, alpha=0.01, total_weights=1879495.508494681, resolution=0.1, num_path_constraints=0
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=4.0858864481609265;Segments=0+,1+,0-

@@ -1,0 +1,197 @@
+CoRAL v2.2.0
+1/11 amplicons solved.
+Runtime Limit: 86400 s
+Profiling Enabled: False
+-----------------------------------------------
+AmpliconID = 1
+#Intervals = 32
+Amplicon Intervals:
+	Amplicon 1 > chr1:181,011,931-181,211,931
+	Amplicon 1 > chr4:153,958,804-154,263,007
+	Amplicon 1 > chr4:169,692,831-170,144,341
+	Amplicon 1 > chr5:170,008-3,310,099
+	Amplicon 1 > chr5:115,309,037-115,984,030
+	Amplicon 1 > chr5:117,017,891-117,217,891
+	Amplicon 1 > chr5:117,404,012-117,644,011
+	Amplicon 1 > chr5:175,653,433-175,855,570
+	Amplicon 1 > chr5:176,693,314-177,368,307
+	Amplicon 1 > chr5:179,883,276-181,438,259
+	Amplicon 1 > chr8:98,772,980-99,344,087
+	Amplicon 1 > chr8:105,175,228-105,375,228
+	Amplicon 1 > chr8:105,964,021-107,579,006
+	Amplicon 1 > chr8:107,584,005-108,623,995
+	Amplicon 1 > chr8:108,709,220-109,116,308
+	Amplicon 1 > chr8:109,695,804-113,708,945
+	Amplicon 1 > chr8:116,293,919-118,893,894
+	Amplicon 1 > chr8:120,985,007-121,185,085
+	Amplicon 1 > chr8:122,623,856-123,638,847
+	Amplicon 1 > chr8:124,188,841-124,478,839
+	Amplicon 1 > chr8:126,743,763-127,260,085
+	Amplicon 1 > chr8:127,658,806-128,421,213
+	Amplicon 1 > chr8:129,218,791-129,658,788
+	Amplicon 1 > chr8:129,663,787-130,031,898
+	Amplicon 1 > chr8:130,276,296-130,528,062
+	Amplicon 1 > chr8:130,768,776-132,297,723
+	Amplicon 1 > chr8:132,707,104-132,931,514
+	Amplicon 1 > chr9:1,030,056-1,753,020
+	Amplicon 1 > chr11:60,404,646-60,604,855
+	Amplicon 1 > chr11:68,990,625-69,895,651
+	Amplicon 1 > chr11:94,977,704-95,354,707
+	Amplicon 1 > chr22:20,287,816-20,487,816
+Total Amplicon Size: 26,091,456
+# Chromosomes: 7
+# Sequence Edges: 366
+# Concordant Edges: 334
+# Discordant Edges: 167
+# Non-Source Edges: 867
+# Source Edges: 128
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=11, alpha=0.01, total_weights=221135553.50904, resolution=0.1, num_path_constraints=119
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=5.621346810198765;Segments=0+,200+,201+,202+,203+,204+,205+,206+,207+,0-
+-----------------------------------------------
+AmpliconID = 2
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 2 > chr5:114,519,046-115,204,040
+Total Amplicon Size: 684,995
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=3834032.0488364124, resolution=0.1, num_path_constraints=0
+-----------------------------------------------
+AmpliconID = 3
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 3 > chr8:120,233,880-120,808,875
+Total Amplicon Size: 574,996
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=4004931.5573159973, resolution=0.1, num_path_constraints=0
+-----------------------------------------------
+AmpliconID = 4
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 4 > chr9:2,460,127-6,740,331
+Total Amplicon Size: 4,280,205
+# Chromosomes: 1
+# Sequence Edges: 3
+# Concordant Edges: 2
+# Discordant Edges: 1
+# Non-Source Edges: 6
+# Source Edges: 4
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=33759078.64688404, resolution=0.1, num_path_constraints=1
+-----------------------------------------------
+AmpliconID = 5
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 5 > chr9:7,640,387-9,315,460
+Total Amplicon Size: 1,675,074
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=10619879.246135296, resolution=0.1, num_path_constraints=0
+-----------------------------------------------
+AmpliconID = 6
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 6 > chr9:17,130,863-17,825,887
+Total Amplicon Size: 695,025
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=4172484.9953962388, resolution=0.1, num_path_constraints=0
+-----------------------------------------------
+AmpliconID = 7
+#Intervals = 5
+Amplicon Intervals:
+	Amplicon 7 > chr9:18,481,389-18,681,389
+	Amplicon 7 > chr12:39,899,956-41,595,253
+	Amplicon 7 > chr20:55,258,356-55,520,464
+	Amplicon 7 > chr20:55,628,614-56,228,638
+	Amplicon 7 > chr20:59,713,876-60,058,884
+Total Amplicon Size: 3,102,442
+# Chromosomes: 3
+# Sequence Edges: 13
+# Concordant Edges: 8
+# Discordant Edges: 4
+# Non-Source Edges: 25
+# Source Edges: 20
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=20769041.043166127, resolution=0.1, num_path_constraints=0
+-----------------------------------------------
+AmpliconID = 8
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 8 > chr12:42,600,255-43,120,254
+Total Amplicon Size: 520,000
+# Chromosomes: 1
+# Sequence Edges: 1
+# Concordant Edges: 0
+# Discordant Edges: 0
+# Non-Source Edges: 1
+# Source Edges: 4
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=3261476.395474166, resolution=0.1, num_path_constraints=0
+-----------------------------------------------
+AmpliconID = 9
+#Intervals = 3
+Amplicon Intervals:
+	Amplicon 9 > chr12:44,930,256-45,475,255
+	Amplicon 9 > chr15:30,979,185-31,179,185
+	Amplicon 9 > chr20:60,403,920-61,683,989
+Total Amplicon Size: 2,025,071
+# Chromosomes: 3
+# Sequence Edges: 9
+# Concordant Edges: 6
+# Discordant Edges: 3
+# Non-Source Edges: 18
+# Source Edges: 12
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=12421001.206749171, resolution=0.1, num_path_constraints=1
+-----------------------------------------------
+AmpliconID = 10
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 10 > chr15:26,906,763-27,536,749
+Total Amplicon Size: 629,987
+# Chromosomes: 1
+# Sequence Edges: 3
+# Concordant Edges: 2
+# Discordant Edges: 1
+# Non-Source Edges: 6
+# Source Edges: 4
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=3562223.376161059, resolution=0.1, num_path_constraints=2
+-----------------------------------------------
+AmpliconID = 11
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 11 > chr17:39,381,337-40,081,350
+Total Amplicon Size: 700,014
+# Chromosomes: 1
+# Sequence Edges: 11
+# Concordant Edges: 10
+# Discordant Edges: 5
+# Non-Source Edges: 26
+# Source Edges: 4
+Cycle Decomposition Status: FAILURE
+	ModelMetadata: GREEDY, k=0, alpha=0.01, total_weights=67454856.55169976, resolution=0.1, num_path_constraints=9

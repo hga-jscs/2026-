@@ -1,0 +1,4 @@
+Interval	1	chr9	7640387	9315460
+List of cycle segments
+Segment	1	chr9	7640387	9315460
+List of extracted cycles/paths

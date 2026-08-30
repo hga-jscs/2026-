@@ -1,0 +1,2 @@
+chrom1	pos1	chrom2	pos2	sv_type	read_support	features	orientation	pos1_flanking_coordinate	pos2_flanking_coordinate	homology_length	homology_sequence
+chr10	78329674	chr1	172554833	interchromosomal	19	Linear	+-	78329673	172554834	None	None

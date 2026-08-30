@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETE",
+  "project_id": "6a581fe4b219fa804843a951",
+  "started_at_utc": "2026-08-30T10:53:44+00:00",
+  "finished_at_utc": "2026-08-30T10:53:44+00:00",
+  "elapsed_seconds": 0.122,
+  "exit_code": 0,
+  "execution_status": "RECOMPUTED",
+  "lp_run_fingerprint": "cce3995a3502aafa4321118e1f387ab36ee93e68acbf0615e0935eb25e22e96c",
+  "input_snapshot_sha256": "a1db470510e62d826f190fed2944b25d5b7f64617332553fd19d72d4e4210f5b",
+  "ac_profile_sha256": "df0b1c3711d8df3324d365195ef3120088ec6b0d1872d19352b430c4210aad45",
+  "ac_run_fingerprint": "61ae47ab30008fb78b4e68be21162d808002d630b277f3f825fcd51b1066b0c9",
+  "lp_source_sha256": "2b6a35ec860ca4dee2b2464178560ea1b30060fffe00df1c38e2409eba7b2252",
+  "pipeline_sha256": "f91e5579ea760d2d0d624640b0fa9a205c08ab7e4157d5c402a8ebc41b17d3e9",
+  "feasibility_tolerance": 1e-07,
+  "checkpoint_sha256": "01fc008062e82ad2e08f0ab80975ee103f03353e607d79a67eeae1efd507c847"
+}

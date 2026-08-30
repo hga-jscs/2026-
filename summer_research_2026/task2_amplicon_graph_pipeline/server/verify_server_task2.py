@@ -1,4 +1,4 @@
-"""Independently verify the bounded CoRAL task2 server rerun."""
+"""Automated consistency checks for the bounded CoRAL Linux server rerun."""
 
 from __future__ import annotations
 
@@ -43,10 +43,12 @@ def main() -> int:
         / f"{PROJECT_ID}_amplicon_classification_profiles.tsv"
     )
     checkpoint_path = root / "data_root" / "lp_runs" / f"{PROJECT_ID}.csv"
-    final_path = root / "results" / "全量AC与环状LWCN结果.csv"
+    final_path = root / "results" / "server_coral_112_ac_lwcn_ratio.csv"
+    ac_metadata_path = root / "data_root" / "ac_runs" / PROJECT_ID / "run_metadata.json"
+    lp_metadata_path = root / "data_root" / "lp_runs" / f"{PROJECT_ID}.metadata.json"
     errors: list[str] = []
 
-    for path in (profile_path, checkpoint_path, final_path):
+    for path in (profile_path, checkpoint_path, final_path, ac_metadata_path, lp_metadata_path):
         if not path.is_file():
             errors.append(f"missing file: {path}")
     if errors:
@@ -70,7 +72,9 @@ def main() -> int:
         for row in profile
     }
     checkpoint_map = {(row["sample"], row["amplicon"]): row for row in checkpoint}
-    final_map = {(row["sample"], row["amplicon"]): row for row in final}
+    final_map = {
+        (row["sample"].split("::", 1)[-1], row["amplicon"]): row for row in final
+    }
     if set(profile_map) != set(checkpoint_map) or set(profile_map) != set(final_map):
         errors.append("sample/amplicon keys differ across AC, LP and final CSV")
 
@@ -96,10 +100,27 @@ def main() -> int:
             if not math.isfinite(lwcn) or lwcn < -TOLERANCE or lwcn > 1.0 + TOLERANCE:
                 errors.append(f"invalid maximum cyclic LWCN ratio for {key}: {lwcn}")
 
+    ac_metadata = json.loads(ac_metadata_path.read_text(encoding="utf-8"))
+    lp_metadata = json.loads(lp_metadata_path.read_text(encoding="utf-8"))
+    if ac_metadata.get("status") != "COMPLETE" or int(ac_metadata.get("exit_code", -1)) != 0:
+        errors.append("AC metadata is not a completed zero-exit run")
+    if lp_metadata.get("status") != "COMPLETE" or int(lp_metadata.get("exit_code", -1)) != 0:
+        errors.append("LP metadata is not a completed zero-exit run")
+    if ac_metadata.get("profile_sha256") != sha256(profile_path):
+        errors.append("AC profile fingerprint mismatch")
+    if lp_metadata.get("checkpoint_sha256") != sha256(checkpoint_path):
+        errors.append("LP checkpoint fingerprint mismatch")
+
     report = {
+        "check_type": "automated_consistency_check",
         "status": "PASSED" if not errors else "FAILED",
         "verified_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "project_id": PROJECT_ID,
+        "hostname": ac_metadata.get("hostname", ""),
+        "ac_started_at_utc": ac_metadata.get("started_at_utc", ""),
+        "ac_finished_at_utc": ac_metadata.get("finished_at_utc", ""),
+        "ac_run_fingerprint": ac_metadata.get("run_fingerprint", ""),
+        "lp_run_fingerprint": lp_metadata.get("lp_run_fingerprint", ""),
         "ac_rows": len(profile),
         "lp_rows": len(checkpoint),
         "final_rows": len(final),
@@ -108,7 +129,8 @@ def main() -> int:
         "ac_source_sha256": sha256(root / "AmpliconClassifier" / "amplicon_classifier.py"),
         "lp_source_sha256": sha256(
             root
-            / "algorithm_revised_src"
+            / "runner"
+            / "算法源码"
             / "original_graph_lwcn"
             / "original_graph_linear_program.py"
         ),
@@ -116,17 +138,17 @@ def main() -> int:
         "errors": errors,
     }
     result_dir = root / "results"
-    (result_dir / "server_verification.json").write_text(
+    (result_dir / "server_automated_check.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     summary = (
-        f"TASK2 SERVER VERIFICATION {report['status']}\n"
+        f"TASK2 SERVER AUTOMATED CONSISTENCY CHECK {report['status']}\n"
         f"AC={len(profile)}; LP={len(checkpoint)}; CSV={len(final)}\n"
         f"max_balance_residual={maxima['max_balance_residual']:.6g}; "
         f"max_lower_bound_violation={maxima['max_lower_bound_violation']:.6g}; "
         f"max_upper_bound_violation={maxima['max_upper_bound_violation']:.6g}\n"
     )
-    (result_dir / "server_verification.txt").write_text(summary, encoding="utf-8")
+    (result_dir / "server_automated_check.txt").write_text(summary, encoding="utf-8")
     print(summary, end="")
     if errors:
         for error in errors[:30]:

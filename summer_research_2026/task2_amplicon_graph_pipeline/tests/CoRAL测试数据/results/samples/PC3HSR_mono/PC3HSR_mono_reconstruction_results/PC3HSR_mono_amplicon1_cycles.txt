@@ -1,0 +1,50 @@
+Interval	1	chr1	171319357	172069352
+Interval	2	chr1	199654128	200164124
+Interval	3	chr10	66100388	67125388
+Interval	4	chr10	68909820	69109820
+Interval	5	chr10	72698285	74940397
+Interval	6	chr10	75325399	77505400
+Interval	7	chr10	77660402	80330403
+List of cycle segments
+Segment	1	chr1	171319357	171725469
+Segment	2	chr1	171725470	172069352
+Segment	3	chr1	199654128	199757873
+Segment	4	chr1	199757874	200164124
+Segment	5	chr10	66100388	66201002
+Segment	6	chr10	66201003	67125388
+Segment	7	chr10	68909820	69009820
+Segment	8	chr10	69009821	69026573
+Segment	9	chr10	69026574	69027555
+Segment	10	chr10	69027556	69109820
+Segment	11	chr10	72698285	72748673
+Segment	12	chr10	72748674	72798284
+Segment	13	chr10	72798285	73305829
+Segment	14	chr10	73305830	73480294
+Segment	15	chr10	73480295	74367631
+Segment	16	chr10	74367632	74940397
+Segment	17	chr10	75325399	75851993
+Segment	18	chr10	75851994	76164130
+Segment	19	chr10	76164131	77505400
+Segment	20	chr10	77660402	78685520
+Segment	21	chr10	78685521	79548482
+Segment	22	chr10	79548483	79549365
+Segment	23	chr10	79549366	79799227
+Segment	24	chr10	79799228	79940510
+Segment	25	chr10	79940511	80330403
+List of longest subpath constraints
+Path constraint 1	e13-:2,c8+:1,e12-:1,d2+:1,e14-:1,c9+:1,e13-:2	Support=10	Unsatisfied
+Path constraint 2	e4-:1,d8-:1,e24+:1,c18-:1,e25+:1	Support=3	Satisfied
+Path constraint 3	e11+:1,c7-:1,e12+:1,c8-:1,e13+:1	Support=4	Satisfied
+List of extracted cycles/paths
+Path=1;Copy_count=8.11786305655175;Segments=0+,17+,18+,19+,0-;Path_constraints_satisfied=
+Path=2;Copy_count=7.157666147396417;Segments=0+,20+,21+,23+,24+,25+,0-;Path_constraints_satisfied=
+Path=3;Copy_count=6.603068157194818;Segments=0+,3+,4+,0-;Path_constraints_satisfied=
+Path=4;Copy_count=6.388277954906142;Segments=0+,5+,6+,0-;Path_constraints_satisfied=
+Path=5;Copy_count=6.0521035794880556;Segments=0+,1+,2+,0-;Path_constraints_satisfied=
+Path=6;Copy_count=4.728741941278584;Segments=0+,11+,12+,13+,14+,15+,16+,0-;Path_constraints_satisfied=3
+Path=7;Copy_count=3.6576910690410003;Segments=0+,7+,8+,10+,0-;Path_constraints_satisfied=
+Path=8;Copy_count=2.5638016503092205;Segments=0+,7+,18-,14+,12+,13+,14+,15+,16+,0-;Path_constraints_satisfied=
+Path=9;Copy_count=0.9146121225828452;Segments=0+,2-,21+,23+,24+,25+,0-;Path_constraints_satisfied=
+Path=10;Copy_count=0.7548773856595066;Segments=0+,6-,15-,14-,13-,12-,14-,18+,7-,0-;Path_constraints_satisfied=
+Path=11;Copy_count=0.20190149723357464;Segments=0+,6-,15-,14-,18+,19+,0-;Path_constraints_satisfied=
+Path=12;Copy_count=0.1976515385271292;Segments=0+,4-,24+,25+,0-;Path_constraints_satisfied=2

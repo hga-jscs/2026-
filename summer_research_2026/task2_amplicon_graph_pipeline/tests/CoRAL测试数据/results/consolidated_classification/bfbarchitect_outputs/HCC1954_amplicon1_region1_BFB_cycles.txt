@@ -1,0 +1,7 @@
+Interval	1	chr11	69636834	95254707
+List of cycle segments
+Segment	1	chr11	69636834	69794534
+Segment	2	chr11	69794535	95080456
+Segment	3	chr11	95080457	95254707
+List of longest subpath constraints
+Path=1;Copy_count=1;Segments=1+,2+,3+,3-,2-,1-,1+,2+,3+,3-,3+,3-,3+,3-,2-,1-,1+;Path_constraints_satisfied=;Score=2.77;Multiplicity=1

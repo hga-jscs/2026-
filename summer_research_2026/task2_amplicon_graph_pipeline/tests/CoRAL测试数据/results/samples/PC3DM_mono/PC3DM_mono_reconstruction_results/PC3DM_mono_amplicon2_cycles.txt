@@ -1,0 +1,10 @@
+Interval	1	chr1	172454348	173189343
+Interval	2	chr10	77660402	79620403
+List of cycle segments
+Segment	1	chr1	172454348	172554832
+Segment	2	chr1	172554833	173189343
+Segment	3	chr10	77660402	78329674
+Segment	4	chr10	78329675	79620403
+List of extracted cycles/paths
+Path=1;Copy_count=7.069577438111883;Segments=0+,3+,4+,0-
+Path=2;Copy_count=5.786258941508687;Segments=0+,1+,2+,0-

@@ -1,0 +1,150 @@
+Interval	1	chr1	154638013	154838013
+Interval	2	chr7	54659673	56149664
+Interval	3	chr7	97646355	100816741
+Interval	4	chr9	91783609	91983609
+Interval	5	chr9	92783560	92983560
+Interval	6	chr9	98008437	98208556
+Interval	7	chr9	114405000	114904996
+Interval	8	chr9	124376769	124576769
+Interval	9	chr20	50249512	50449512
+List of cycle segments
+Segment	1	chr1	154638013	154738013
+Segment	2	chr1	154738014	154838013
+Segment	3	chr7	54659673	54763281
+Segment	4	chr7	54763282	54782197
+Segment	5	chr7	54782198	54785671
+Segment	6	chr7	54785672	54811746
+Segment	7	chr7	54811747	54825743
+Segment	8	chr7	54825744	54832917
+Segment	9	chr7	54832918	54890689
+Segment	10	chr7	54890690	54907109
+Segment	11	chr7	54907110	54919802
+Segment	12	chr7	54919803	54936546
+Segment	13	chr7	54936547	54940416
+Segment	14	chr7	54940417	54941746
+Segment	15	chr7	54941747	54946367
+Segment	16	chr7	54946368	54953965
+Segment	17	chr7	54953966	54961682
+Segment	18	chr7	54961683	54961946
+Segment	19	chr7	54961947	54993222
+Segment	20	chr7	54993223	55004190
+Segment	21	chr7	55004191	55017640
+Segment	22	chr7	55017641	55020262
+Segment	23	chr7	55020263	55045709
+Segment	24	chr7	55045710	55083620
+Segment	25	chr7	55083621	55085979
+Segment	26	chr7	55085980	55089607
+Segment	27	chr7	55089608	55101513
+Segment	28	chr7	55101514	55127266
+Segment	29	chr7	55127267	55155020
+Segment	30	chr7	55155021	55169009
+Segment	31	chr7	55169010	55197749
+Segment	32	chr7	55197750	55228176
+Segment	33	chr7	55228177	55237642
+Segment	34	chr7	55237643	55263254
+Segment	35	chr7	55263255	55278497
+Segment	36	chr7	55278498	55309799
+Segment	37	chr7	55309800	55311448
+Segment	38	chr7	55311449	55317360
+Segment	39	chr7	55317361	55325726
+Segment	40	chr7	55325727	55346565
+Segment	41	chr7	55346566	55356176
+Segment	42	chr7	55356177	55358024
+Segment	43	chr7	55358025	55376550
+Segment	44	chr7	55376551	55500731
+Segment	45	chr7	55500732	55569788
+Segment	46	chr7	55569789	55609190
+Segment	47	chr7	55609191	55610094
+Segment	48	chr7	55610095	55624981
+Segment	49	chr7	55624982	55639250
+Segment	50	chr7	55639251	55657085
+Segment	51	chr7	55657086	55657455
+Segment	52	chr7	55657456	55722763
+Segment	53	chr7	55722764	55766743
+Segment	54	chr7	55766744	55767335
+Segment	55	chr7	55767336	55770669
+Segment	56	chr7	55770670	55791021
+Segment	57	chr7	55791022	55814076
+Segment	58	chr7	55814077	55828351
+Segment	59	chr7	55828352	55854107
+Segment	60	chr7	55854108	55873201
+Segment	61	chr7	55873202	56028241
+Segment	62	chr7	56028242	56049369
+Segment	63	chr7	56049370	56149664
+Segment	64	chr7	97646355	100713392
+Segment	65	chr7	100713393	100714316
+Segment	66	chr7	100714317	100714494
+Segment	67	chr7	100714495	100716741
+Segment	68	chr7	100716742	100816741
+Segment	69	chr9	91783609	91883608
+Segment	70	chr9	91883609	91983609
+Segment	71	chr9	92783560	92883560
+Segment	72	chr9	92883561	92983560
+Segment	73	chr9	98008437	98108436
+Segment	74	chr9	98108437	98108556
+Segment	75	chr9	98108557	98208556
+Segment	76	chr9	114405000	114764764
+Segment	77	chr9	114764765	114904996
+Segment	78	chr9	124376769	124476768
+Segment	79	chr9	124476769	124576769
+Segment	80	chr20	50249512	50349511
+Segment	81	chr20	50349512	50449512
+List of longest subpath constraints
+Path constraint 1	e13+:1,c12-:1,e14+:1,c13-:1,e15+:1,c14-:1,e16+:1,d2-:1,e21+:1	Support=11	Satisfied
+Path constraint 2	e16-:1,c14+:1,e15-:1,c13+:1,e14-:1,c12+:1,e13-:1,d3-:1,e24+:1	Support=2	Unsatisfied
+Path constraint 3	e33+:1,c32-:1,e34+:1,d7+:1,e25-:1,d4+:1,e27-:1,d11+:1,e40-:1	Support=1	Unsatisfied
+Path constraint 4	e24+:1,c23-:1,e25+:1,c24-:1,e26+:1,c25-:1,e27+:1,c26-:1,e28+:1,d5-:1,e30+:1,c29-:1,e31+:1	Support=32	Satisfied
+Path constraint 5	e28+:1,d5-:1,e30+:1,d6+:1,e33-:1,c31+:1,e32-:1,c30+:1,e31-:1	Support=7	Unsatisfied
+Path constraint 6	e28+:1,d5-:1,e30+:1,c29-:1,e31+:1,c30-:1,e32+:1,c31-:1,e33+:1,c32-:1,e34+:1	Support=26	Satisfied
+Path constraint 7	e4+:1,c3-:1,e5+:1,d8-:1,e36+:1	Support=2	Satisfied
+Path constraint 8	e19-:1,c17+:1,e18-:1,c16+:1,e17-:1,c15+:1,e16-:1,c14+:1,e15-:1,d9-:1,e37+:1,c36-:1,e38+:1,c37-:1,e39+:1	Support=37	Satisfied
+Path constraint 9	e11-:1,d10-:1,e39+:1,c38-:1,e40+:1,c39-:1,e41+:1	Support=4	Unsatisfied
+Path constraint 10	e38+:1,c37-:1,e39+:1,c38-:1,e40+:2,c39-:1,e41+:1,d12-:1,e40+:2	Support=10	Satisfied
+Path constraint 11	e41+:2,d12-:1,e40+:1,c39-:1,e41+:2	Support=1	Satisfied
+Path constraint 12	e32+:1,d13+:1,e42-:1,c40+:1,e41-:1,c39+:1,e40-:1,c38+:1,e39-:1,c37+:1,e38-:1,c36+:1,e37-:1,c35+:1,e36-:1	Support=29	Satisfied
+Path constraint 13	e10-:1,d14+:1,e43-:1,c41+:1,e42-:1,c40+:1,e41-:1,c39+:1,e40-:1	Support=23	Satisfied
+Path constraint 14	e24-:1,c22+:1,e23-:1,d16-:1,e49+:1	Support=1	Satisfied
+Path constraint 15	e6+:1,c5-:1,e7+:1,d17+:1,e50-:1	Support=1	Unsatisfied
+Path constraint 16	e21-:1,c19+:1,e20-:1,d19+:1,e54-:1,c52+:1,e53-:1	Support=2	Unsatisfied
+Path constraint 17	e12+:1,c11-:1,e13+:1,d20-:1,e56+:1,d21-:1,e46+:1	Support=2	Satisfied
+Path constraint 18	e19-:1,c17+:1,e18-:1,c16+:1,e17-:1,c15+:1,e16-:1,d22+:1,e57-:1	Support=2	Unsatisfied
+Path constraint 19	e15-:1,c13+:1,e14-:1,c12+:1,e13-:1,c11+:1,e12-:1,d23+:1,e58-:1	Support=10	Satisfied
+Path constraint 20	e12-:1,d23+:1,e58-:1,c56+:1,e57-:1	Support=1	Satisfied
+Path constraint 21	e45-:1,d24-:1,e60+:1,c59-:1,e61+:1	Support=2	Satisfied
+Path constraint 22	e9-:1,c7+:1,e8-:1,c6+:1,e7-:1,c5+:1,e6-:1,c4+:1,e5-:1,c3+:1,e4-:1,d27+:1,e62-:1	Support=37	Satisfied
+Path constraint 23	e7-:1,c5+:1,e6-:1,c4+:1,e5-:1,c3+:1,e4-:1,d27+:1,e62-:1,c60+:1,e61-:1	Support=15	Satisfied
+Path constraint 24	e61+:1,c60-:1,e62+:1,d27-:1,e4+:1,d33+:1,e74-:1,d34+:1,e76-:1	Support=1	Unsatisfied
+Path constraint 25	e12+:1,c11-:1,e13+:1,c12-:1,e14+:1,c13-:1,e15+:1,c14-:1,e16+:1,c15-:1,e17+:1,c16-:1,e18+:1,c17-:1,e19+:1,c18-:1,e20+:1,c19-:1,e21+:1,d31-:1,e70+:1	Support=15	Unsatisfied
+Path constraint 26	e34+:1,c33-:1,e35+:1,c34-:1,e36+:1,c35-:1,e37+:1,d32+:1,e71-:1	Support=25	Satisfied
+Path constraint 27	e52-:1,c50+:1,e51-:1,c49+:1,e50-:1,d36-:1,e81+:1	Support=49	Unsatisfied
+Path constraint 28	e3+:1,c2-:1,e4+:1,c3-:1,e5+:1,c4-:1,e6+:1	Support=2	Satisfied
+Path constraint 29	e6+:1,c5-:1,e7+:1,c6-:1,e8+:1,c7-:1,e9+:1,c8-:1,e10+:1	Support=1	Satisfied
+Path constraint 30	e9+:1,c8-:1,e10+:1,c9-:1,e11+:1,c10-:1,e12+:1,c11-:1,e13+:1,c12-:1,e14+:1,c13-:1,e15+:1,c14-:1,e16+:1,c15-:1,e17+:1,c16-:1,e18+:1,c17-:1,e19+:1	Support=25	Satisfied
+Path constraint 31	e12+:1,c11-:1,e13+:1,c12-:1,e14+:1,c13-:1,e15+:1,c14-:1,e16+:1,c15-:1,e17+:1,c16-:1,e18+:1,c17-:1,e19+:1,c18-:1,e20+:1,c19-:1,e21+:1,c20-:1,e22+:1	Support=3	Satisfied
+Path constraint 32	e15+:1,c14-:1,e16+:1,c15-:1,e17+:1,c16-:1,e18+:1,c17-:1,e19+:1,c18-:1,e20+:1,c19-:1,e21+:1,c20-:1,e22+:1,c21-:1,e23+:1	Support=34	Satisfied
+Path constraint 33	e19+:1,c18-:1,e20+:1,c19-:1,e21+:1,c20-:1,e22+:1,c21-:1,e23+:1,c22-:1,e24+:1	Support=6	Satisfied
+Path constraint 34	e22+:1,c21-:1,e23+:1,c22-:1,e24+:1,c23-:1,e25+:1,c24-:1,e26+:1,c25-:1,e27+:1,c26-:1,e28+:1	Support=3	Satisfied
+Path constraint 35	e24+:1,c23-:1,e25+:1,c24-:1,e26+:1,c25-:1,e27+:1,c26-:1,e28+:1,c27-:1,e29+:1	Support=1	Satisfied
+Path constraint 36	e29+:1,c28-:1,e30+:1,c29-:1,e31+:1,c30-:1,e32+:1	Support=3	Satisfied
+Path constraint 37	e32+:1,c31-:1,e33+:1,c32-:1,e34+:1,c33-:1,e35+:1,c34-:1,e36+:1	Support=5	Satisfied
+Path constraint 38	e33+:1,c32-:1,e34+:1,c33-:1,e35+:1,c34-:1,e36+:1,c35-:1,e37+:1,c36-:1,e38+:1	Support=2	Satisfied
+Path constraint 39	e34+:1,c33-:1,e35+:1,c34-:1,e36+:1,c35-:1,e37+:1,c36-:1,e38+:1,c37-:1,e39+:1,c38-:1,e40+:1,c39-:1,e41+:1,c40-:1,e42+:1,c41-:1,e43+:1,c42-:1,e44+:1	Support=11	Satisfied
+Path constraint 40	e44+:1,c43-:1,e45+:1,c44-:1,e46+:1	Support=1	Satisfied
+Path constraint 41	e48+:1,c47-:1,e49+:1,c48-:1,e50+:1,c49-:1,e51+:1,c50-:1,e52+:1,c51-:1,e53+:1	Support=13	Satisfied
+Path constraint 42	e52+:1,c51-:1,e53+:1,c52-:1,e54+:1,c53-:1,e55+:1,c54-:1,e56+:1,c55-:1,e57+:1,c56-:1,e58+:1,c57-:1,e59+:1	Support=35	Satisfied
+Path constraint 43	e56+:1,c55-:1,e57+:1,c56-:1,e58+:1,c57-:1,e59+:1,c58-:1,e60+:1,c59-:1,e61+:1	Support=19	Satisfied
+Path constraint 44	e61+:1,c60-:1,e62+:1,c61-:1,e63+:1	Support=1	Satisfied
+Path constraint 45	e64+:1,c62-:1,e65+:1,c63-:1,e66+:1,c64-:1,e67+:1,c65-:1,e68+:1	Support=2	Unsatisfied
+Path constraint 46	e73+:1,c68-:1,e74+:1,c69-:1,e75+:1	Support=6	Satisfied
+List of extracted cycles/paths
+Cycle=1;Copy_count=95.07655867220862;Segments=4+,5+,6+,7+,8+,9+,10+,11+,12+,13+,14+,15+,16+,17+,18+,19+,20+,21+,22+,23+,24+,25+,26+,27+,28+,30+,31+,32+,33+,34+,35+,36+,37+,38+,39+,40+,41+,42+,43+,44+,45+,46+,48+,49+,50+,51+,52+,53+,54+,55+,56+,57+,58+,59+,60+,61+,62+;Path_constraints_satisfied=4,6,22,23,29,30,31,32,33,34,37,38,39,40,41,42,43
+Cycle=2;Copy_count=6.433268727900014;Segments=4+,5+,36+,37+,38+,39+,40+,41+,40+,41+,42+,43+,10+,11+,12+,13+,56+,57+,58+,59+,60+,61+,62+;Path_constraints_satisfied=7
+Path=3;Copy_count=4.955651003064101;Segments=0+,64+,65+,66+,18-,17-,16-,15-,14-,13-,12-,11-,10-,9-,8-,7-,6-,5-,4-,62-,61-,60-,59-,58-,57-,56-,55-,54-,53-,53-,52-,51-,50-,49-,48-,46-,56-,13-,12-,11-,10-,43-,42-,41-,40-,41-,40-,39-,38-,37-,15+,16+,17+,18+,19+,20+,21+,22+,23+,24+,25+,26+,27+,28+,30+,31+,32+,33+,34+,35+,36+,37+,71-,0-;Path_constraints_satisfied=8,10,11,13,17,26
+Path=4;Copy_count=4.947100972010432;Segments=0+,76+,77+,0-;Path_constraints_satisfied=
+Path=5;Copy_count=4.346898297315775;Segments=0+,73+,74+,75+,0-;Path_constraints_satisfied=46
+Path=6;Copy_count=3.349277743834989;Segments=0+,78+,79+,0-;Path_constraints_satisfied=
+Path=7;Copy_count=3.1665678552753986;Segments=0+,64+,66+,67+,68+,0-;Path_constraints_satisfied=
+Path=8;Copy_count=2.0069089961779096;Segments=0+,3+,4+,5+,6+,7+,8+,9+,10+,11+,12+,13+,14+,15+,16+,17+,18+,19+,20+,21+,22+,23+,24+,25+,26+,27+,28+,29+,30+,31+,32+,33+,34+,35+,36+,37+,38+,39+,40+,41+,40+,41+,42+,43+,10+,11+,12+,13+,56+,46+,48+,49+,50+,51+,52+,53+,53+,54+,55+,56+,57+,58+,59+,60+,61+,62+,4+,5+,6+,7+,8+,9+,10+,11+,12+,13+,14+,15+,16+,21+,22+,23+,24+,25+,26+,27+,28+,30+,31+,32+,33+,34+,35+,36+,37+,38+,39+,40+,41+,42+,32-,31-,30-,29-,28-,27-,26-,25-,24-,23-,22-,21-,20-,19-,18-,17-,16-,15-,14-,13-,12-,11-,10-,9-,79+,0-;Path_constraints_satisfied=1,12,28,35,36
+Path=9;Copy_count=1.9497103836963277;Segments=0+,3+,4+,5+,36+,37+,38+,39+,40+,41+,42+,32-,31-,30-,28-,27-,26-,25-,24-,23-,22-,21-,16-,15-,37+,38+,39+,40+,41+,42+,43+,10+,11+,12+,13+,56+,57+,58+,59+,60+,61+,62+,63+,0-;Path_constraints_satisfied=44
+Path=10;Copy_count=1.3918290494535484;Segments=0+,63-,62-,61-,60-,45+,46+,48+,49+,50+,51+,52+,53+,53+,54+,55+,56+,57+,58+,12+,13+,14+,15+,16+,21+,70+,0-;Path_constraints_satisfied=19,21
+Path=11;Copy_count=0.3891567551315518;Segments=0+,63-,62-,61-,60-,59-,58-,57-,56-,13-,12-,58-,57-,56-,55-,54-,53-,53-,52-,51-,50-,49-,48-,46-,56-,55-,54-,53-,52-,51-,50-,49-,23+,24+,25+,26+,27+,28+,30+,31+,32+,42-,41-,40-,41-,40-,39-,38-,37-,15+,16+,17+,18+,66-,65-,64-,0-;Path_constraints_satisfied=14,20

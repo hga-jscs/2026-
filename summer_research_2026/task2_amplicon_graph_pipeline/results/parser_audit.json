@@ -1,0 +1,98 @@
+{
+  "record_count": 28142,
+  "records_with_info": 28090,
+  "records_with_warning": 2,
+  "unsupported_format_records": 0,
+  "categories": [
+    {
+      "severity": "INFO",
+      "code": "AA_COMMA_PREFIXED_HEADERS",
+      "affected_record_count": 1,
+      "record_or_edge_occurrence_count": 1,
+      "examples": [
+        "69c59d0cd69472646656266f::BS_W37QBA12/amplicon1: count=1; recognized comma-prefixed AA headers"
+      ],
+      "handling": "recognized AA header variant; no data loss"
+    },
+    {
+      "severity": "INFO",
+      "code": "AA_LENGTH_CONVENTION",
+      "affected_record_count": 28019,
+      "record_or_edge_occurrence_count": 708996,
+      "examples": [
+        "6542c25fbba7c9250951ac56::092297b2-021d-4145-96ce-ef2400e32f89/amplicon1: count=1; used declared AA end-start genomic lengths",
+        "6542c25fbba7c9250951ac56::0984082c-8ea3-4d8c-a407-ef859bb1feb5/amplicon1: count=2; used declared AA end-start genomic lengths",
+        "6542c25fbba7c9250951ac56::0d602801-6346-43bc-90cd-831a9c880c06/amplicon1: count=9; used declared AA end-start genomic lengths"
+      ],
+      "handling": "accepted declared AA end-start length"
+    },
+    {
+      "severity": "INFO",
+      "code": "EMPTY_GRAPH",
+      "affected_record_count": 11,
+      "record_or_edge_occurrence_count": 11,
+      "examples": [
+        "6542d245bba7c9250951ba68::MB260_AA/amplicon3: count=1; no edge records; exact maximum cyclic ratio is zero",
+        "6a5be6cd5bcd8f807e207525::CUGA-058T-Rp/amplicon1: count=1; no edge records; exact maximum cyclic ratio is zero",
+        "6a5be6cd5bcd8f807e207525::CUGA-077T-Rp2/amplicon1: count=1; no edge records; exact maximum cyclic ratio is zero"
+      ],
+      "handling": "exact zero result"
+    },
+    {
+      "severity": "INFO",
+      "code": "LEGACY_AA_HEADERS",
+      "affected_record_count": 11,
+      "record_or_edge_occurrence_count": 22,
+      "examples": [
+        "6a5a4a116b83a17ac9586742::HF-2354-61-09D/amplicon1: count=2; recognized legacy human-readable headers",
+        "6a5a4a116b83a17ac9586742::HF-2927-60-19D/amplicon1: count=2; recognized legacy human-readable headers",
+        "6a5a4a116b83a17ac9586742::HF-3016-61-12D/amplicon1: count=2; recognized legacy human-readable headers"
+      ],
+      "handling": "recognized header; no data loss"
+    },
+    {
+      "severity": "INFO",
+      "code": "PATH_CONSTRAINT_RECORDS",
+      "affected_record_count": 60,
+      "record_or_edge_occurrence_count": 1187,
+      "examples": [
+        "6a581fe4b219fa804843a951::BT474/amplicon10: count=1; intentionally excluded from the graph-capacity LP",
+        "6a581fe4b219fa804843a951::BT474/amplicon11: count=2; intentionally excluded from the graph-capacity LP",
+        "6a581fe4b219fa804843a951::BT474/amplicon2: count=6; intentionally excluded from the graph-capacity LP"
+      ],
+      "handling": "documented model scope; not used by this LP"
+    },
+    {
+      "severity": "INFO",
+      "code": "SOURCE_EDGE_RECORDS",
+      "affected_record_count": 28019,
+      "record_or_edge_occurrence_count": 321575,
+      "examples": [
+        "6542c25fbba7c9250951ac56::092297b2-021d-4145-96ce-ef2400e32f89/amplicon1: count=2; validated AA source connections; cyclic load fixed to zero",
+        "6542c25fbba7c9250951ac56::0984082c-8ea3-4d8c-a407-ef859bb1feb5/amplicon1: count=3; validated AA source connections; cyclic load fixed to zero",
+        "6542c25fbba7c9250951ac56::0d602801-6346-43bc-90cd-831a9c880c06/amplicon1: count=5; validated AA source connections; cyclic load fixed to zero"
+      ],
+      "handling": "validated; excluded because source-edge cyclic load is zero"
+    },
+    {
+      "severity": "WARNING",
+      "code": "NUMERICAL_NOISE_CLAMP",
+      "affected_record_count": 1,
+      "record_or_edge_occurrence_count": 1,
+      "examples": [
+        "69c59d0cd69472646656266f::SJMEL030083_R2/amplicon1: line=11; field=breakpoint CN; original=-9.60184309839e-09; replacement=0"
+      ],
+      "handling": "kept only within 1e-7 and disclosed"
+    },
+    {
+      "severity": "WARNING",
+      "code": "UNMATCHED_BREAKPOINT_ENDPOINT",
+      "affected_record_count": 1,
+      "record_or_edge_occurrence_count": 23,
+      "examples": [
+        "6a5be6cd5bcd8f807e207525::T002/amplicon1: count=23; circular load forced to zero at endpoints=chr16:36173321-,chr16:36175667-,chr16:36184782-,chr16:36186206-,chr16:36186948-"
+      ],
+      "handling": "retained with WARNING; cyclic load forced to zero"
+    }
+  ]
+}

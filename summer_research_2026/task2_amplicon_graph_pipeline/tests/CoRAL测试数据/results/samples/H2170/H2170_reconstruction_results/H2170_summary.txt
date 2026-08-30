@@ -1,0 +1,59 @@
+CoRAL v2.2.0
+3/3 amplicons solved.
+Runtime Limit: 86400 s
+Profiling Enabled: False
+-----------------------------------------------
+AmpliconID = 1
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 1 > chr1:114,101,094-115,026,304
+Total Amplicon Size: 925,211
+# Chromosomes: 1
+# Sequence Edges: 15
+# Concordant Edges: 14
+# Discordant Edges: 7
+# Non-Source Edges: 36
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=5, alpha=0.01, total_weights=24153424.31196591, resolution=0.1, num_path_constraints=11
+	Heaviest graph walk solved was a cycle.
+	Cycle=1;Copy_count=12.932921641908194;Segments=2+,3+,4+,5+,6+,7+,8+,9+,10+,11+,12+,13+,14-,13-,12-,11-,10-,9-,8-,7-,6-,5-,4-,3-
+-----------------------------------------------
+AmpliconID = 2
+#Intervals = 8
+Amplicon Intervals:
+	Amplicon 2 > chr2:118,387,190-118,587,895
+	Amplicon 2 > chr3:48,110,471-48,310,471
+	Amplicon 2 > chr3:111,455,238-111,656,217
+	Amplicon 2 > chr6:72,920,804-73,120,804
+	Amplicon 2 > chr8:101,078,107-101,278,971
+	Amplicon 2 > chr8:126,833,815-129,048,794
+	Amplicon 2 > chr10:92,277,466-92,477,466
+	Amplicon 2 > chr17:39,561,313-40,411,675
+Total Amplicon Size: 4,267,897
+# Chromosomes: 6
+# Sequence Edges: 41
+# Concordant Edges: 33
+# Discordant Edges: 18
+# Non-Source Edges: 92
+# Source Edges: 32
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=7, alpha=0.01, total_weights=616975146.1013762, resolution=0.1, num_path_constraints=18
+	Heaviest graph walk solved was a cycle.
+	Cycle=1;Copy_count=125.06141152633363;Segments=12+,29-,28-,27-,26-,24-,23-,22-,21-,20-,19-,18-,17-,38+,22-,21-,20-,28-,27-,26-,24-,34-,40-,36+,15-
+-----------------------------------------------
+AmpliconID = 3
+#Intervals = 1
+Amplicon Intervals:
+	Amplicon 3 > chr14:34,777,501-40,077,179
+Total Amplicon Size: 5,299,679
+# Chromosomes: 1
+# Sequence Edges: 17
+# Concordant Edges: 16
+# Discordant Edges: 8
+# Non-Source Edges: 41
+# Source Edges: 4
+Cycle Decomposition Status: SUCCESS
+	ModelMetadata: GREEDY, k=7, alpha=0.01, total_weights=49137820.99509392, resolution=0.1, num_path_constraints=5
+	Heaviest graph walk solved was a path.
+	Path=1;Copy_count=5.187146326110627;Segments=0+,1+,2+,3+,5+,7+,9+,10+,11+,12+,13+,15+,16+,17+,0-

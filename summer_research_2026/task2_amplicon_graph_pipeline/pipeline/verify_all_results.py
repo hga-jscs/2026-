@@ -1,4 +1,4 @@
-"""独立验收全量 AC + 最大环状占比结果；任一计数、状态或残差不符即失败。"""
+"""Automated consistency checks for the complete AC + cyclic-ratio snapshot."""
 
 from __future__ import annotations
 
@@ -10,8 +10,26 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
+from pipeline_provenance import (
+    ac_runtime_tree_sha256,
+    canonical_sha256,
+    paired_input_snapshot,
+    sha256,
+    tree_sha256,
+)
+
+
 FEASIBILITY_TOLERANCE = 1e-7
+DUALITY_GAP_RATIO_TOLERANCE = 1e-12
 ACCEPTED_LP_STATUSES = {"OPTIMAL", "TRIVIAL_OPTIMAL_ZERO"}
+ALLOWED_CLASSIFICATIONS = {
+    "Cyclic",
+    "Complex-non-cyclic",
+    "Linear",
+    "No-FSCNA",
+    "Invalid",
+    "Virus",
+}
 
 
 def read_csv(path: Path, delimiter: str = ",") -> list[dict[str, str]]:
@@ -19,144 +37,324 @@ def read_csv(path: Path, delimiter: str = ",") -> list[dict[str, str]]:
         return list(csv.DictReader(handle, delimiter=delimiter))
 
 
+def fail_if(condition: bool, message: str, failures: list[str]) -> None:
+    if condition:
+        failures.append(message)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Independent acceptance checks for AC and maximum cyclic-ratio results."
+        description="Automated provenance, identity, hash, range and residual consistency checks."
     )
     parser.add_argument("--data-root", required=True, type=Path)
     parser.add_argument("--output-dir", required=True, type=Path)
+    parser.add_argument("--ac-source", type=Path)
     args = parser.parse_args()
 
+    code_root = Path(__file__).resolve().parent
+    repository_root = code_root.parent
+    ac_source = args.ac_source or repository_root / "AmpliconClassifier"
     failures: list[str] = []
     dataset_rows = read_csv(args.output_dir / "数据集清单.csv")
     ac_rows = read_csv(args.output_dir / "ac_run_manifest.csv")
     lp_rows = read_csv(args.output_dir / "lp_run_manifest.csv")
-    result_path = args.output_dir / "全量AC与环状LWCN结果.csv"
-    with result_path.open("r", encoding="utf-8-sig", newline="") as handle:
+    final_path = args.output_dir / "全量AC与环状LWCN结果.csv"
+    extended_path = args.output_dir / "全量扩展溯源结果.csv"
+    with final_path.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
-        header = reader.fieldnames
-        result_rows = list(reader)
+        final_header = reader.fieldnames
+        final_rows = list(reader)
+    with extended_path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        extended_header = reader.fieldnames or []
+        extended_rows = list(reader)
 
-    if header != ["sample", "amplicon", "lwcn", "classification"]:
-        failures.append(f"unexpected result header: {header}")
-    if len(dataset_rows) != 32:
-        failures.append(f"dataset count is {len(dataset_rows)}, expected 32")
-    if any(row["status"] != "READY" for row in dataset_rows):
-        failures.append("at least one dataset is not READY")
+    fail_if(final_header != ["sample", "amplicon", "lwcn", "classification"],
+            f"unexpected four-column header: {final_header}", failures)
+    fail_if(not dataset_rows, "dataset manifest is empty", failures)
+    fail_if(any(row["status"] != "READY" for row in dataset_rows),
+            "at least one dataset is not READY", failures)
     expected_total = sum(int(row["paired_amplicon_count"]) for row in dataset_rows)
+    expected_projects = len(dataset_rows)
+
     archive_total = 0
+    archive_hashes_verified = 0
+    snapshot_by_project: dict[str, dict[str, object]] = {}
     for row in dataset_rows:
-        archive = args.data_root / "archives" / f"{row['project_id']}.tar.gz"
+        project_id = row["project_id"]
+        archive = args.data_root / "archives" / f"{project_id}.tar.gz"
         if not archive.is_file():
-            failures.append(f"archive missing: {row['project_id']}")
+            failures.append(f"archive missing: {project_id}")
             continue
         actual_size = archive.stat().st_size
-        declared_size = int(row["archive_bytes"])
         archive_total += actual_size
-        if actual_size != declared_size:
-            failures.append(f"archive size mismatch: {row['project_id']}")
-        if len(row["sha256"]) != 64:
-            failures.append(f"bad SHA-256 field: {row['project_id']}")
+        fail_if(actual_size != int(row["archive_bytes"]),
+                f"archive size mismatch: {project_id}", failures)
+        actual_hash = sha256(archive)
+        fail_if(actual_hash != row["sha256"], f"archive SHA-256 mismatch: {project_id}", failures)
+        if actual_hash == row["sha256"]:
+            archive_hashes_verified += 1
+        snapshot = paired_input_snapshot(args.data_root / "extracted" / project_id)
+        snapshot_by_project[project_id] = snapshot
+        fail_if(int(snapshot["pair_count"]) != int(row["paired_amplicon_count"]),
+                f"input pair count mismatch: {project_id}", failures)
 
-    if len(ac_rows) != 32:
-        failures.append(f"AC project count is {len(ac_rows)}, expected 32")
-    if any(row["status"] not in {"COMPLETE", "REUSED_COMPLETE"} for row in ac_rows):
-        failures.append("at least one AC project is incomplete")
+    fail_if(len(ac_rows) != expected_projects,
+            f"AC project count {len(ac_rows)} != {expected_projects}", failures)
+    fail_if(any(row["status"] != "COMPLETE" for row in ac_rows),
+            "at least one AC project is incomplete", failures)
     ac_expected = sum(int(row["expected_amplicons"]) for row in ac_rows)
     ac_actual = sum(int(row["classified_amplicons"]) for row in ac_rows)
-    if ac_expected != expected_total or ac_actual != expected_total:
-        failures.append(f"AC count mismatch: expected={ac_expected}, actual={ac_actual}, input={expected_total}")
+    fail_if(ac_expected != expected_total or ac_actual != expected_total,
+            f"AC count mismatch: expected={ac_expected}, actual={ac_actual}, input={expected_total}", failures)
 
-    if len(lp_rows) != 32:
-        failures.append(f"LP project count is {len(lp_rows)}, expected 32")
-    if any(row["status"] != "COMPLETE" for row in lp_rows):
-        failures.append("at least one LP project is incomplete")
+    current_ac_source_hash = ac_runtime_tree_sha256(ac_source)
+    current_config_hash = sha256(ac_source / "ampclasslib" / "default_config.json")
+    ac_metadata_verified = 0
+    for manifest in ac_rows:
+        project_id = manifest["project_id"]
+        failure_count_before_project = len(failures)
+        metadata_path = args.data_root / "ac_runs" / project_id / "run_metadata.json"
+        profile = args.data_root / "ac_runs" / project_id / f"{project_id}_amplicon_classification_profiles.tsv"
+        if not metadata_path.is_file():
+            failures.append(f"AC metadata missing: {project_id}")
+            continue
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        fail_if(metadata.get("status") != "COMPLETE", f"AC metadata incomplete: {project_id}", failures)
+        fail_if(int(metadata.get("exit_code", -1)) != 0, f"AC exit code is not zero: {project_id}", failures)
+        fail_if(not metadata.get("started_at_utc") or not metadata.get("finished_at_utc"),
+                f"AC timestamps missing: {project_id}", failures)
+        fail_if(metadata.get("ac_source_sha256") != current_ac_source_hash,
+                f"AC source fingerprint mismatch: {project_id}", failures)
+        fail_if(metadata.get("default_config_sha256") != current_config_hash,
+                f"AC config fingerprint mismatch: {project_id}", failures)
+        fail_if(metadata.get("profile_sha256") != sha256(profile),
+                f"AC profile hash mismatch: {project_id}", failures)
+        snapshot = snapshot_by_project.get(project_id, {})
+        fail_if(metadata.get("input_snapshot_sha256") != snapshot.get("snapshot_sha256"),
+                f"AC input fingerprint mismatch: {project_id}", failures)
+        fingerprint_payload = {
+            "project_id": project_id,
+            "reference_genome": metadata["reference_genome"],
+            "bfbarchitect_mode": metadata["bfbarchitect_mode"],
+            "bfb_solver": metadata["bfb_solver"],
+            "jobs": metadata["jobs"],
+            "input_snapshot_sha256": metadata["input_snapshot_sha256"],
+            "reference_snapshot_sha256": metadata["reference_snapshot_sha256"],
+            "ac_source_sha256": metadata["ac_source_sha256"],
+            "default_config_sha256": metadata["default_config_sha256"],
+            "upstream_commit": metadata["upstream_commit"],
+            "pipeline_sha256": metadata["pipeline_sha256"],
+            "python_executable": metadata["python_executable"],
+        }
+        fail_if(canonical_sha256(fingerprint_payload) != metadata.get("run_fingerprint"),
+                f"AC run fingerprint is internally inconsistent: {project_id}", failures)
+        if len(failures) == failure_count_before_project:
+            ac_metadata_verified += 1
+
+    fail_if(len(lp_rows) != expected_projects,
+            f"LP project count {len(lp_rows)} != {expected_projects}", failures)
+    fail_if(any(row["status"] != "COMPLETE" for row in lp_rows),
+            "at least one LP project is incomplete", failures)
     lp_expected = sum(int(row["expected_amplicons"]) for row in lp_rows)
     lp_actual = sum(int(row["solved_amplicons"]) for row in lp_rows)
-    if lp_expected != expected_total or lp_actual != expected_total:
-        failures.append(f"LP count mismatch: expected={lp_expected}, actual={lp_actual}, input={expected_total}")
+    fail_if(lp_expected != expected_total or lp_actual != expected_total,
+            f"LP count mismatch: expected={lp_expected}, actual={lp_actual}, input={expected_total}", failures)
 
-    max_balance = 0.0
-    max_lower = 0.0
-    max_upper = 0.0
-    solver_rows = 0
+    current_lp_source_hash = tree_sha256(repository_root / "source")
+    current_lp_pipeline_hash = tree_sha256(
+        code_root, ["run_lwcn_and_merge.py", "pipeline_provenance.py"]
+    )
+    checkpoint_rows: list[dict[str, str]] = []
     lp_status_counts: Counter[str] = Counter()
-    parse_warning_rows = 0
+    max_balance = max_lower = max_upper = max_gap = max_gap_ratio = 0.0
+    parse_info_rows = parse_warning_rows = 0
+    source_files_verified = 0
     for project in dataset_rows:
-        checkpoint = args.data_root / "lp_runs" / f"{project['project_id']}.csv"
-        if not checkpoint.is_file():
-            failures.append(f"LP checkpoint missing: {project['project_id']}")
+        project_id = project["project_id"]
+        checkpoint = args.data_root / "lp_runs" / f"{project_id}.csv"
+        metadata_path = args.data_root / "lp_runs" / f"{project_id}.metadata.json"
+        if not checkpoint.is_file() or not metadata_path.is_file():
+            failures.append(f"LP checkpoint or metadata missing: {project_id}")
             continue
         rows = read_csv(checkpoint)
-        if len(rows) != int(project["paired_amplicon_count"]):
-            failures.append(f"LP checkpoint count mismatch: {project['project_id']}")
+        checkpoint_rows.extend(rows)
+        fail_if(len(rows) != int(project["paired_amplicon_count"]),
+                f"LP checkpoint count mismatch: {project_id}", failures)
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        fail_if(metadata.get("status") != "COMPLETE", f"LP metadata incomplete: {project_id}", failures)
+        fail_if(int(metadata.get("exit_code", -1)) != 0, f"LP exit code is not zero: {project_id}", failures)
+        fail_if(metadata.get("lp_source_sha256") != current_lp_source_hash,
+                f"LP source fingerprint mismatch: {project_id}", failures)
+        fail_if(metadata.get("pipeline_sha256") != current_lp_pipeline_hash,
+                f"LP pipeline fingerprint mismatch: {project_id}", failures)
+        fail_if(metadata.get("checkpoint_sha256") != sha256(checkpoint),
+                f"LP checkpoint hash mismatch: {project_id}", failures)
+        fail_if(metadata.get("input_snapshot_sha256") != snapshot_by_project[project_id]["snapshot_sha256"],
+                f"LP input fingerprint mismatch: {project_id}", failures)
+        lp_payload = {
+            "project_id": project_id,
+            "input_snapshot_sha256": metadata["input_snapshot_sha256"],
+            "ac_profile_sha256": metadata["ac_profile_sha256"],
+            "ac_run_fingerprint": metadata["ac_run_fingerprint"],
+            "lp_source_sha256": metadata["lp_source_sha256"],
+            "pipeline_sha256": metadata["pipeline_sha256"],
+            "feasibility_tolerance": metadata["feasibility_tolerance"],
+        }
+        fail_if(canonical_sha256(lp_payload) != metadata.get("lp_run_fingerprint"),
+                f"LP run fingerprint is internally inconsistent: {project_id}", failures)
+        pair_map = {
+            (row["sample"], row["amplicon"]): row
+            for row in snapshot_by_project[project_id]["pairs"]
+        }
         for row in rows:
-            solver_rows += 1
+            key = (row["sample"], row["amplicon"])
+            pair = pair_map.get(key)
+            if pair is None:
+                failures.append(f"checkpoint identity missing from input snapshot: {project_id}/{key}")
+                continue
+            # ``paired_input_snapshot`` above has already re-read and hashed both
+            # source files in this same verification run.  Reuse those freshly
+            # computed values here instead of reading all 56,284 files twice.
+            graph_hash = pair["graph_sha256"]
+            cycles_hash = pair["cycles_sha256"]
+            fail_if(row["graph_sha256"] != graph_hash or row["cycles_sha256"] != cycles_hash,
+                    f"source file hash mismatch: {project_id}/{key}", failures)
+            if row["graph_sha256"] == graph_hash and row["cycles_sha256"] == cycles_hash:
+                source_files_verified += 2
             lp_status_counts[row["lp_status"]] += 1
-            if row["lp_status"] not in ACCEPTED_LP_STATUSES:
-                failures.append(f"non-optimal LP status: {project['project_id']}")
-            if int(row.get("parse_warning_count") or 0) > 0:
-                parse_warning_rows += 1
-            max_balance = max(max_balance, float(row["max_balance_residual"]))
-            max_lower = max(max_lower, float(row["max_lower_bound_violation"]))
-            max_upper = max(max_upper, float(row["max_upper_bound_violation"]))
+            fail_if(row["lp_status"] not in ACCEPTED_LP_STATUSES,
+                    f"non-optimal LP status: {project_id}/{key}", failures)
+            parse_info_rows += int(row.get("parse_info_count") or 0) > 0
+            parse_warning_rows += int(row.get("parse_warning_count") or 0) > 0
+            balance = float(row["max_balance_residual"])
+            lower = float(row["max_lower_bound_violation"])
+            upper = float(row["max_upper_bound_violation"])
+            gap = float(row["certified_gap"])
+            max_balance, max_lower, max_upper, max_gap = (
+                max(max_balance, balance), max(max_lower, lower),
+                max(max_upper, upper), max(max_gap, abs(gap)),
+            )
+            for field, value in (
+                ("balance", balance), ("lower", lower), ("upper", upper)
+            ):
+                fail_if(not math.isfinite(value) or value > FEASIBILITY_TOLERANCE,
+                        f"{field} residual exceeds tolerance: {project_id}/{key}={value}", failures)
+            total = float(row["total_length_weighted_copy_number"])
+            maximum = float(row["maximum_cyclic_length_weighted_copy_number"])
+            ratio = float(row["lwcn"])
+            gap_ratio = abs(gap) / max(1.0, abs(total), abs(maximum))
+            max_gap_ratio = max(max_gap_ratio, gap_ratio)
+            fail_if(not math.isfinite(gap) or gap < 0.0 or gap_ratio > DUALITY_GAP_RATIO_TOLERANCE,
+                    f"relative duality gap exceeds tolerance: {project_id}/{key}={gap_ratio}", failures)
+            expected_ratio = maximum / total if total > 0 else 0.0
+            fail_if(not (math.isfinite(total) and math.isfinite(maximum) and math.isfinite(ratio)),
+                    f"non-finite LP objective: {project_id}/{key}", failures)
+            fail_if(maximum < -FEASIBILITY_TOLERANCE or maximum > total + FEASIBILITY_TOLERANCE,
+                    f"absolute cyclic LWCN outside capacity: {project_id}/{key}", failures)
+            fail_if(ratio < -FEASIBILITY_TOLERANCE or ratio > 1 + FEASIBILITY_TOLERANCE,
+                    f"cyclic ratio outside [0,1]: {project_id}/{key}", failures)
+            fail_if(abs(ratio - expected_ratio) > 2e-9,
+                    f"cyclic ratio does not match numerator/denominator: {project_id}/{key}", failures)
 
-    if max_balance > FEASIBILITY_TOLERANCE:
-        failures.append(f"balance residual too large: {max_balance}")
-    if max_lower > FEASIBILITY_TOLERANCE:
-        failures.append(f"lower-bound violation too large: {max_lower}")
-    if max_upper > FEASIBILITY_TOLERANCE:
-        failures.append(f"upper-bound violation too large: {max_upper}")
-    if solver_rows != expected_total:
-        failures.append(f"solver row count mismatch: {solver_rows}/{expected_total}")
+    fail_if(len(checkpoint_rows) != expected_total,
+            f"checkpoint row count {len(checkpoint_rows)} != {expected_total}", failures)
+    fail_if(len(extended_rows) != expected_total,
+            f"extended row count {len(extended_rows)} != {expected_total}", failures)
+    fail_if(len(final_rows) != expected_total,
+            f"four-column row count {len(final_rows)} != {expected_total}", failures)
+    required_extended = {
+        "project_id", "sample", "project_scoped_sample", "amplicon", "graph_sha256",
+        "cycles_sha256", "maximum_cyclic_length_weighted_copy_number", "lwcn",
+        "classification", "ecDNA+", "BFB+", "FAN+", "lp_status", "parse_warning_types",
+    }
+    fail_if(not required_extended.issubset(extended_header),
+            f"extended table missing columns: {sorted(required_extended - set(extended_header))}", failures)
 
-    for index, row in enumerate(result_rows, start=2):
-        if not row["sample"] or not row["amplicon"] or not row["classification"]:
-            failures.append(f"blank required field at result row {index}")
+    checkpoint_map = {
+        (row["project_id"], row["sample"], row["amplicon"]): row for row in checkpoint_rows
+    }
+    extended_map = {
+        (row["project_id"], row["sample"], row["amplicon"]): row for row in extended_rows
+    }
+    fail_if(len(checkpoint_map) != expected_total, "checkpoint project-scoped identities are not unique", failures)
+    fail_if(len(extended_map) != expected_total, "extended project-scoped identities are not unique", failures)
+    fail_if(set(checkpoint_map) != set(extended_map), "checkpoint and extended identities differ", failures)
+    common_columns = set(extended_header) & set(checkpoint_rows[0] if checkpoint_rows else {})
+    for key in set(checkpoint_map) & set(extended_map):
+        if any(checkpoint_map[key].get(column, "") != extended_map[key].get(column, "") for column in common_columns):
+            failures.append(f"extended table differs from checkpoint: {key}")
             break
-        try:
-            lwcn = float(row["lwcn"])
-            if not math.isfinite(lwcn) or lwcn < -1e-10 or lwcn > 1.0 + 1e-10:
-                raise ValueError
-        except ValueError:
-            failures.append(f"invalid lwcn at result row {index}: {row['lwcn']}")
-            break
-    if len(result_rows) != expected_total:
-        failures.append(f"final CSV row count mismatch: {len(result_rows)}/{expected_total}")
 
-    classification_counts = Counter(row["classification"] for row in result_rows)
+    final_map = {(row["sample"], row["amplicon"]): row for row in final_rows}
+    fail_if(len(final_map) != expected_total, "four-column project-scoped identities are not unique", failures)
+    for row in extended_rows:
+        final = final_map.get((row["project_scoped_sample"], row["amplicon"]))
+        if final is None:
+            failures.append(f"four-column row missing: {row['project_scoped_sample']}/{row['amplicon']}")
+            break
+        if final["lwcn"] != row["lwcn"] or final["classification"] != row["classification"]:
+            failures.append(f"four-column value mismatch: {row['project_scoped_sample']}/{row['amplicon']}")
+            break
+        fail_if(row["classification"] not in ALLOWED_CLASSIFICATIONS,
+                f"unexpected decomposition class: {row['classification']}", failures)
+
+    parser_audit = json.loads((args.output_dir / "解析信息审计.json").read_text(encoding="utf-8"))
+    fail_if(int(parser_audit["record_count"]) != expected_total,
+            "parser audit row count mismatch", failures)
+    fail_if(int(parser_audit["unsupported_format_records"]) != 0,
+            "parser audit contains unsupported formats", failures)
+    audit_warning_rows = int(parser_audit["records_with_warning"])
+    fail_if(audit_warning_rows != parse_warning_rows,
+            "parser warning count differs between audit and checkpoints", failures)
+
+    classification_counts = Counter(row["classification"] for row in final_rows)
     summary = {
+        "check_type": "automated_consistency_check",
         "verified_at_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "status": "PASSED" if not failures else "FAILED",
-        "public_project_count": len(dataset_rows),
+        "public_project_count": expected_projects,
         "archive_total_bytes": archive_total,
-        "paired_amplicon_count": expected_total,
+        "archive_sha256_verified_count": archive_hashes_verified,
+        "paired_amplicon_record_count": expected_total,
+        "project_scoped_identity_unique": len(final_map) == expected_total,
         "ac_classified_count": ac_actual,
-        "lp_optimal_count": solver_rows,
+        "ac_metadata_verified_count": ac_metadata_verified,
+        "lp_optimal_count": len(checkpoint_rows),
         "lp_status_counts": dict(sorted(lp_status_counts.items())),
+        "source_graph_and_cycles_sha256_verified_count": source_files_verified,
+        "parse_info_rows": parse_info_rows,
         "parse_warning_rows": parse_warning_rows,
-        "final_csv_row_count": len(result_rows),
+        "final_csv_row_count": len(final_rows),
+        "extended_csv_row_count": len(extended_rows),
         "max_balance_residual": max_balance,
         "max_lower_bound_violation": max_lower,
         "max_upper_bound_violation": max_upper,
+        "max_certified_gap": max_gap,
+        "max_certified_gap_ratio": max_gap_ratio,
         "feasibility_tolerance": FEASIBILITY_TOLERANCE,
+        "duality_gap_ratio_tolerance": DUALITY_GAP_RATIO_TOLERANCE,
+        "classification_semantics": "AmpliconClassifier amplicon_decomposition_class",
+        "lwcn_semantics": "maximum cyclic length-weighted copy-number ratio",
         "classification_counts": dict(sorted(classification_counts.items())),
         "failures": failures,
     }
-    (args.output_dir / "全量验收.json").write_text(
-        json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    json_path = args.output_dir / "全量自动一致性检查.json"
+    text_path = args.output_dir / "全量自动一致性检查.txt"
+    json_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     message = (
-        f"TASK2 FULL RESULTS VERIFICATION {summary['status']}\n"
-        f"projects={len(dataset_rows)}; paired_amplicons={expected_total}; "
-        f"AC={ac_actual}; LP_OPTIMAL={solver_rows}; CSV={len(result_rows)}\n"
-        f"max_balance_residual={max_balance:.6g}; "
-        f"max_lower_bound_violation={max_lower:.6g}; "
-        f"max_upper_bound_violation={max_upper:.6g}\n"
+        f"TASK2 FULL AUTOMATED CONSISTENCY CHECK {summary['status']}\n"
+        f"projects={expected_projects}; project_scoped_records={expected_total}; "
+        f"AC={ac_actual}; LP={len(checkpoint_rows)}; CSV={len(final_rows)}\n"
+        f"archive_hashes={archive_hashes_verified}/{expected_projects}; "
+        f"source_file_hashes={source_files_verified}/{expected_total * 2}; "
+        f"parser_warning_rows={parse_warning_rows}\n"
+        f"max_balance_residual={max_balance:.6g}; max_lower_bound_violation={max_lower:.6g}; "
+        f"max_upper_bound_violation={max_upper:.6g}; max_certified_gap_ratio={max_gap_ratio:.6g}\n"
     )
     if failures:
-        message += "failures=" + " | ".join(failures) + "\n"
-    (args.output_dir / "全量验收.txt").write_text(message, encoding="utf-8")
+        message += "failures=" + " | ".join(failures[:50]) + "\n"
+    text_path.write_text(message, encoding="utf-8")
     print(message, end="")
     return 0 if not failures else 2
 

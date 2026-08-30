@@ -1,0 +1,2 @@
+List of cycle segments
+Segment	1	chr8	120233880	120808875

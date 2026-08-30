@@ -1,0 +1,3 @@
+List of cycle segments
+Segment	1	chr7	68796702	69586694
+Cycle=1;Copy_count=7.09987550354982;Length=789993;IsCyclicPath=False;CycleClass=Linear;Segments=0+,1+,0+

@@ -1,0 +1,10 @@
+Interval	1	chr1	114201094	114926766
+List of cycle segments
+Segment	1	chr1	114201094	114499011
+Segment	2	chr1	114499012	114595554
+Segment	3	chr1	114595555	114722637
+Segment	4	chr1	114722638	114783946
+Segment	5	chr1	114783947	114893886
+Segment	6	chr1	114893887	114926766
+List of longest subpath constraints
+Path=1;Copy_count=1;Segments=6-,5-,4-,3-,2-,1-,1+,2+,3+,4+,5+,6+,6-,6+,6-,5-,4-,3-,2-,1-,1+,2+,3+,4+,4-,3-,3+,4+,4-,3-,3+,4+,4-,3-,2-,1-,1+,2+,3+,4+,5+,6+,6-,5-,4-,3-,2-,1-,1+;Path_constraints_satisfied=;Score=1.22;Multiplicity=4
