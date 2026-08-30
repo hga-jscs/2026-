@@ -1,4 +1,4 @@
-"""独立验收全量 AC + graph-only LP 结果；任一计数、状态或残差不符即失败。"""
+"""独立验收全量 AC + 最大环状占比结果；任一计数、状态或残差不符即失败。"""
 
 from __future__ import annotations
 
@@ -20,7 +20,9 @@ def read_csv(path: Path, delimiter: str = ",") -> list[dict[str, str]]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Independent acceptance checks for the full AC/LWCN results.")
+    parser = argparse.ArgumentParser(
+        description="Independent acceptance checks for AC and maximum cyclic-ratio results."
+    )
     parser.add_argument("--data-root", required=True, type=Path)
     parser.add_argument("--output-dir", required=True, type=Path)
     args = parser.parse_args()
@@ -114,7 +116,7 @@ def main() -> int:
             break
         try:
             lwcn = float(row["lwcn"])
-            if not math.isfinite(lwcn) or lwcn < -1e-10:
+            if not math.isfinite(lwcn) or lwcn < -1e-10 or lwcn > 1.0 + 1e-10:
                 raise ValueError
         except ValueError:
             failures.append(f"invalid lwcn at result row {index}: {row['lwcn']}")

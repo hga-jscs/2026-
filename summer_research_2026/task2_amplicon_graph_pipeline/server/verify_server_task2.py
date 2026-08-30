@@ -93,8 +93,8 @@ def main() -> int:
             if final_map[key]["classification"] != profile_map[key]:
                 errors.append(f"classification mismatch for {key}")
             lwcn = float(final_map[key]["lwcn"])
-            if not math.isfinite(lwcn) or lwcn < -TOLERANCE:
-                errors.append(f"invalid LWCN for {key}: {lwcn}")
+            if not math.isfinite(lwcn) or lwcn < -TOLERANCE or lwcn > 1.0 + TOLERANCE:
+                errors.append(f"invalid maximum cyclic LWCN ratio for {key}: {lwcn}")
 
     report = {
         "status": "PASSED" if not errors else "FAILED",

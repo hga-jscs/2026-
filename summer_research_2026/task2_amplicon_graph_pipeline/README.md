@@ -1,6 +1,6 @@
-# AmpliconClassifier 与原图最大环状 LWCN 全数据流程
+# AmpliconClassifier 与原图最大环状 LWCN 占比全数据流程
 
-本目录是 task2 的可复核代码交付。它下载并整理 AmpliconRepository 公开 AA 结果，批量调用 AmpliconClassifier（AC），在原始 breakpoint graph 上求最大可行环状长度加权拷贝数（LWCN），合并四列结果，并执行独立验收。
+本目录是 task2 的可复核代码交付。它下载并整理 AmpliconRepository 公开 AA 结果，批量调用 AmpliconClassifier（AC），在原始 breakpoint graph 上求最大环状长度加权拷贝数占比，合并四列结果，并执行独立验收。
 
 ## 目录
 
@@ -22,7 +22,7 @@
 - AC 完成：28,142；LP 完成：28,142。
 - LP 状态：28,131 个 `OPTIMAL`，11 个 `TRIVIAL_OPTIMAL_ZERO`。
 - 最大流平衡残差：`9.594493466380527e-08`；最大下界/上界违反分别为 `3.597120556975142e-08`、`9.977164339147748e-08`，均不超过 `1e-7` 验收容差。
-- 最终文件：`results/all_ac_lwcn_results.csv`；机器验收：`results/verification.json`。
+- 最终文件：`results/all_ac_lwcn_results.csv`，其中 `lwcn` 是 `[0,1]` 内的最大环状 LWCN 占比；机器验收：`results/verification.json`。
 
 28,030 行带解析警告，主要来自上游 AA 文本中的额外行、长度约定差异或无法匹配的端点；这些行仍通过 LP 状态、有限数值和 `1e-7` 可行性验收。警告不是静默丢弃，完整内容保留在每个项目的 LP checkpoint 中（原始数据与 checkpoint 未提交到 GitHub）。
 
@@ -58,4 +58,4 @@ $env:PYTHONPATH = (Resolve-Path .\src).Path
 
 ## 解释边界
 
-`lwcn` 是给定 breakpoint graph 容量和流平衡约束下的最大环状 LWCN；`classification` 是 AC 对 graph 与 cycles 等证据的分类。仅凭 graph 得到正的 `lwcn` 不能替代 AC 的 `Cyclic/ecDNA` 判定，也不能恢复原始 cycles 分解。
+`lwcn` 是给定 breakpoint graph 容量和流平衡约束下，最大环状 LWCN 除以图总 LWCN 的比例；`classification` 是 AC 对 graph 与 cycles 等证据的分类。仅凭 graph 得到正的 `lwcn` 不能替代 AC 的 `Cyclic/ecDNA` 判定，也不能恢复原始 cycles 分解。

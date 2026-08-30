@@ -1,5 +1,5 @@
 ﻿<#
-统一入口：在已有公开数据和检查点上重新执行 AC 调度、LWCN 合并与独立验收。
+统一入口：在已有公开数据和检查点上重新执行 AC 调度、最大环状占比合并与独立验收。
 默认不重复下载约 8 GB 归档，也不重算已完整的 28,142 个检查点；传入 -ForceLP 时只强制
 重算 LP。AC 的缺失/不完整项目会由 run_ac_all.py 自动继续。
 #>
@@ -49,7 +49,7 @@ Write-Host "STEP 1/3  AC project dispatch and checkpoint validation"
     --no-bfbarchitect
 if ($LASTEXITCODE -ne 0) { throw "AC stage failed with exit code $LASTEXITCODE" }
 
-Write-Host "STEP 2/3  Maximum cyclic LWCN and four-column merge"
+Write-Host "STEP 2/3  Maximum cyclic ratio and four-column merge"
 $lpArguments = @(
     (Join-Path $codeRoot "run_lwcn_and_merge.py"),
     "--dataset-manifest", $datasetManifest,
@@ -59,7 +59,7 @@ $lpArguments = @(
 )
 if ($ForceLP) { $lpArguments += "--force" }
 & $PythonExe @lpArguments
-if ($LASTEXITCODE -ne 0) { throw "LWCN stage failed with exit code $LASTEXITCODE" }
+if ($LASTEXITCODE -ne 0) { throw "Maximum cyclic ratio stage failed with exit code $LASTEXITCODE" }
 
 Write-Host "STEP 3/3  Independent acceptance"
 & $PythonExe (Join-Path $codeRoot "verify_all_results.py") `

@@ -1,4 +1,4 @@
-"""对每张公开 graph 求最大环状 LWCN，并与 AC 分类一对一合并。
+"""对每张公开 graph 求最大环状长度加权拷贝数占比，并与 AC 分类一对一合并。
 
 解析器同时接受 CoRAL inclusive length 与 AA ``end-start`` 长度口径；数值噪声只在
 ``1e-7`` 容差内夹到零。每个项目写独立检查点，最终 CSV 只包含用户要求的四列。
@@ -11,6 +11,7 @@ import concurrent.futures
 import csv
 import json
 import math
+import os
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -28,6 +29,19 @@ from original_graph_lwcn.original_graph_linear_program import (
 
 FEASIBILITY_TOLERANCE = 1e-7
 ACCEPTED_LP_STATUSES = {"OPTIMAL", "TRIVIAL_OPTIMAL_ZERO"}
+
+
+def filesystem_path(path: Path) -> Path:
+    """Use the Windows extended-length prefix without changing path identity."""
+
+    if os.name != "nt":
+        return path
+    absolute = str(path.resolve())
+    if absolute.startswith("\\\\?\\"):
+        return Path(absolute)
+    if absolute.startswith("\\\\"):
+        return Path("\\\\?\\UNC\\" + absolute.lstrip("\\"))
+    return Path("\\\\?\\" + absolute)
 
 
 def utc_now() -> str:
@@ -57,7 +71,7 @@ def graph_identity(graph_path: Path) -> tuple[str, str]:
 
 def paired_graphs(project_input: Path) -> list[Path]:
     graphs: list[Path] = []
-    for graph in project_input.rglob("*_graph.txt"):
+    for graph in filesystem_path(project_input).rglob("*_graph.txt"):
         lowered_parts = tuple(part.lower() for part in graph.parts)
         if any(
             part == "bfbarchitect_outputs" or part.endswith("_bfbarchitect_outputs")
@@ -196,7 +210,7 @@ def parse_graph_file_compatible(path: Path) -> BreakpointGraph:
                 warnings.append(f"Ignored line {line_number}: {line[:100]}")
     if not sequence_edges:
         if not breakpoint_edges and not nodes:
-            warnings.append("Empty graph: exact trivial cyclic LWCN is zero")
+            warnings.append("Empty graph: exact maximum cyclic ratio is zero")
             return BreakpointGraph(
                 source_path=source_path,
                 nodes={},
@@ -258,8 +272,12 @@ def solve_one_graph(
         result = solve_original_graph_linear_program(graph)
         if result.status != "OPTIMAL":
             raise RuntimeError(f"LP status={result.status}: {result.solver_message}")
-        if result.maximum_cyclic_lwcn is None or not math.isfinite(result.maximum_cyclic_lwcn):
-            raise ValueError("LP returned a non-finite cyclic LWCN")
+        ratio = result.maximum_cyclic_ratio
+        if ratio is None or not math.isfinite(ratio):
+            raise ValueError("LP returned a non-finite maximum cyclic ratio")
+        if ratio < -FEASIBILITY_TOLERANCE or ratio > 1.0 + FEASIBILITY_TOLERANCE:
+            raise ValueError(f"maximum cyclic ratio is outside [0, 1]: {ratio}")
+        ratio = min(1.0, max(0.0, ratio))
         if not valid_number(result.max_balance_residual):
             raise ValueError(f"balance residual={result.max_balance_residual}")
         if not valid_number(result.max_lower_bound_violation):
@@ -270,7 +288,7 @@ def solve_one_graph(
             {
                 "sample": sample,
                 "amplicon": amplicon,
-                "lwcn": format(result.maximum_cyclic_lwcn, ".12g"),
+                "lwcn": format(ratio, ".12g"),
                 "classification": classification,
                 "project_id": project_id,
                 "lp_status": result.status,
@@ -373,7 +391,9 @@ def write_summary(rows: list[dict[str, object]], output_dir: Path) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Solve cyclic-LWCN LPs and merge with AC classifications.")
+    parser = argparse.ArgumentParser(
+        description="Solve maximum cyclic length-weighted copy-number ratios and merge with AC classifications."
+    )
     parser.add_argument("--dataset-manifest", required=True, type=Path)
     parser.add_argument("--data-root", required=True, type=Path)
     parser.add_argument("--output-dir", required=True, type=Path)
